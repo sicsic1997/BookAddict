@@ -1,0 +1,28 @@
+1. Log In 
+GET: http://localhost:8080/bookAddict/user/logIn?userName=sicsic1997&password=vlad1997
+ON SUCCES 202-Accepted:
+{
+	"id":1,
+	"userName":"sicsic1997",
+	"firstName":"Vlad",
+	"lastName":"Coteanu",
+	"password":"vlad1997",
+	"userType":"CUSTOMER",
+	"phoneNumber":"0723899167",
+	"address":"Cal. Energ 9-11"
+}
+ON FAIL: 403-Forbidden
+
+2. Register
+POST: http://localhost:8080/bookAddict/user/register
+Consumes JSON:
+{
+	"userName": "sicsic1997",
+	"firstName": "Vlad",
+	"lastName": "Coteanu",
+	"password": "vlad1997",
+	"userType": "CUSTOMER",
+	"phoneNumber": "0723899167",
+	"address": "Cal. Energ 9-11"
+}
+ON SUCCES: 200-OK

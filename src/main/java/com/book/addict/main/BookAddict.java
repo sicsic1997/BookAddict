@@ -1,6 +1,8 @@
 package com.book.addict.main;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -19,9 +21,15 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
 public class BookAddict {
 
+    private static final Logger log = LoggerFactory.getLogger(BookAddict.class);
+
     public static void main(String[] args) {
 
         SpringApplication.run(BookAddict.class, args);
+
+        log.info("Access URL: \n ---------------------------------------------\n\t" +
+                "Local: \t\thttp://127.0.0.1:8080\n");
+
     }
 
 }
