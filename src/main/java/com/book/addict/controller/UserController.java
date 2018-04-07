@@ -24,7 +24,7 @@ public class UserController {
             method = RequestMethod.GET)
     public ResponseEntity<Object> logInUser(@RequestParam String userName, @RequestParam String password) {
 
-        UserDTO userDTO = userService.getUserByUserName(userName, password);
+        UserDTO userDTO = userService.getUserByUserNameAndPassword(userName, password);
         if(userDTO == null) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         } else {
