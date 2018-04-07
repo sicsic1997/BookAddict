@@ -32,7 +32,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void registerUser(UserDTO userDTO) {
+    public Boolean registerUser(UserDTO userDTO) {
+
+        Optional<UserDTO> userExistingOptional = userDAO.getUserByUserName(userDTO.getUserName());
+        if(userExistingOptional.isPresent()) {
+            return false;
+        }
         userDAO.registerUser(userDTO);
+        return true;
+
     }
 }

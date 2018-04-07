@@ -39,9 +39,13 @@ public class UserController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> registerUser(@RequestBody UserDTO userDTO) {
 
-        userService.registerUser(userDTO);
-        return new ResponseEntity<Object>(HttpStatus.OK);
-
+        String responseMessage = null;
+        Boolean isSuccessful = userService.registerUser(userDTO);
+        if(isSuccessful) {
+            return new ResponseEntity<Object>("User successful registered", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<Object>("User already exists in the database", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
