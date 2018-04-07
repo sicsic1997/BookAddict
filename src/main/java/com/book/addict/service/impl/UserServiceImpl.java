@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
     @Override
-    public UserDTO getUserByUserName(String userName, String password) {
+    public UserDTO getUserByUserNameAndPassword(String userName, String password) {
 
         Optional<UserDTO> userDTO =  userDAO.getUserByUserName(userName);
         UserDTO user = null;

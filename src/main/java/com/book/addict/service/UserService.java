@@ -4,7 +4,7 @@ import com.book.addict.dto.UserDTO;
 
 public interface UserService {
 
-    UserDTO getUserByUserName(String userName, String password);
+    UserDTO getUserByUserNameAndPassword(String userName, String password);
 
     Boolean registerUser(UserDTO userDTO);
 
