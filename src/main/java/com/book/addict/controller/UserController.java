@@ -20,9 +20,9 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(
-            value = "/logIn",
+            value = "/login",
             method = RequestMethod.GET)
-    public ResponseEntity<Object> logInUser(@RequestParam String userName, @RequestParam String password) {
+    public ResponseEntity<Object> loginUser(@RequestParam String userName, @RequestParam String password) {
 
         UserDTO userDTO = userService.getUserByUserNameAndPassword(userName, password);
         if(userDTO == null) {

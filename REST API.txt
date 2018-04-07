@@ -1,5 +1,5 @@
 1. Log In 
-GET: http://localhost:8080/bookAddict/user/logIn?userName=sicsic1997&password=vlad1997
+GET: http://localhost:8080/bookAddict/user/login?userName=sicsic1997&password=vlad1997
 ON SUCCES 202-Accepted:
 {
 	"id":1,
