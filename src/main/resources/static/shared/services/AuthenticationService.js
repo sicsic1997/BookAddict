@@ -24,13 +24,12 @@
         this.setCredentials = setCredentials;
         this.clearCredentials = clearCredentials;
 
+        var baseUrl = "http://localhost:8080/bookAddict/";
+
         ////////////////
 
         function authenticate(username, password) {
-            console.log("login in progress");
-            return $timeout(function () {
-                console.log("login finished");
-            }, 2000);
+            return $http.get(baseUrl + "user/login?userName=" + username + "&password=" + password);
         }
 
         function setCredentials(username, password) {
