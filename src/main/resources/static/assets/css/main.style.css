@@ -1,0 +1,192 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.app-container {
+    position:relative;
+    height: 100%;
+}
+
+.login-container {
+    position: absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    background-image: url("../images/background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-modal {
+    min-height: 70%;
+    min-width:700px;
+    background-color: white;
+    padding: 0;
+}
+
+.login-modal [class^="col"] {
+    padding: 0;
+}
+
+.login-modal div:nth-child(1) .left {
+    background-image: url("../images/left-background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    padding-top: 13%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-modal div:nth-child(1) .left div:nth-child(1) {
+    width: 150px;
+}
+
+.login-modal div:nth-child(1) .left div:nth-child(4) {
+    width: 200px;
+}
+
+
+.login-modal div:nth-child(1) .left div {
+    display: inline-block;
+    text-align: left;
+    background-color: #789a36;
+    width: 185px;
+}
+
+.login-modal div:nth-child(1) .left div:nth-child(2) h1 {
+    font-weight: bold;
+    font-size: 1.95em;
+}
+
+.login-modal div:nth-child(1) .left div h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    color: #d7d7d7;
+    margin: 0;
+    padding-left: 45px;
+    font-size: 2em;
+}
+
+.login-modal div:nth-child(2) .right{
+    min-height: 100%;
+    flex-direction: column;
+    margin: 0;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.login-modal div:nth-child(2) .right div {
+    flex-basis: 0;
+}
+
+.right .brand {
+    flex-grow: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right .brand img {
+    width: 40px;
+    margin-bottom: 7px;
+    margin-right: 5px;
+}
+
+.right .brand .text {
+    color: #636363;
+    font-size: 1.6em;
+}
+
+.right .brand .text span {
+    font-weight: bold;
+    margin-left: 2px;
+    color: #535353;
+}
+
+.right .login-form {
+    flex-grow: 3;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right .login-form .login-input {
+    width: 190px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #d4d4d4;
+    text-align: center;
+    color: #686868;
+}
+
+.right .login-form .login-input[type="password"] {
+    letter-spacing: 0.15em;
+}
+
+.right .login-form .login-input::placeholder {
+    color: #b7b7b7;
+    letter-spacing: 0;
+    opacity: 1;
+}
+
+.right [class^="info"] {
+    min-height: 75px;
+}
+
+.right .info-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right .info-1 button {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: #99c446;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.right .info-1 button:active {
+    outline: none;
+    border: none;
+}
+
+.right .info-1 button:focus {
+    outline:0;
+}
+
+.right .info-1 button i{
+    font-size: 0.9em;
+    color: #99c446;
+    vertical-align: middle;
+    margin-bottom: 0.2em;
+}
+
+.right .info-2 {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.right .info-2 h5 {
+    font-size: 0.75em;
+    color: #767676;
+}
+
+.right .info-2 h5 span {
+    font-weight: bold;
+    color: #535353;
+    cursor: pointer;
+}

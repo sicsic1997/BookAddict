@@ -1,0 +1,33 @@
+{
+  "name": "bookaddict",
+  "version": "1.0.0",
+  "description": "Online library",
+  "main": "index.js",
+  "scripts": {
+    "dev": "grunt dev",
+    "start": "http-server ./src/main/resources/static -a localhost -p 9997 -c-1 -o"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sicsic1997/BookAddict.git"
+  },
+  "author": "sebastian <sebastiancoteanu@gmail.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/sicsic1997/BookAddict/issues"
+  },
+  "homepage": "https://github.com/sicsic1997/BookAddict#readme",
+  "devDependencies": {
+    "@uirouter/angularjs": "^1.0.15",
+    "angular": "^1.6.9",
+    "angular-animate": "^1.6.9",
+    "angular-cookies": "^1.6.9",
+    "bootstrap": "^4.0.0",
+    "grunt": "^1.0.2",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "http-server": "^0.11.1",
+    "load-grunt-tasks": "^3.5.2"
+  }
+}
