@@ -5,11 +5,13 @@ import com.book.addict.dto.CategoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class JdbcCategoryDAO implements CategoryDAO{
 
     @Autowired
@@ -45,10 +47,10 @@ public class JdbcCategoryDAO implements CategoryDAO{
                 "SELECT  " +
                 "   categories.ID_CATEGORY,  " +
                 "   categories.DE_CATEGORY  " +
-                "FROM BA_CATEGORIES categories" +
-                "INNER JOIN BA_BOOK_TO_CATEGORIES_MAP map" +
-                "ON categories.ID_CATEGORY = map.ID_CATEGORY" +
-                "WHERE map.ID_BOOK = :idBook";
+                "FROM BA_CATEGORIES categories " +
+                "INNER JOIN BA_BOOK_TO_CATEGORIES_MAP map " +
+                "ON categories.ID_CATEGORY = map.ID_CATEGORY " +
+                "WHERE map.ID_BOOK = :idBook ";
 
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("idBook", idBook);

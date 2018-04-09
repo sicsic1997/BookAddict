@@ -17,7 +17,7 @@ public class CookieInRequestInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        if(request.getRequestURI().contains(COOKIES_NOT_NEEDED_ON)) {
+        /*if(request.getRequestURI().contains(COOKIES_NOT_NEEDED_ON)) {
             return super.preHandle(request, response, handler);
         } else {
             if(Arrays
@@ -26,7 +26,7 @@ public class CookieInRequestInterceptor extends HandlerInterceptorAdapter {
                     .collect(Collectors.toList()).size() == 0) {
                 return false;
             }
-        }
+        }*/
         return super.preHandle(request, response, handler);
     }
 }

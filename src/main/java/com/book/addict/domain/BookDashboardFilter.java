@@ -1,16 +1,26 @@
 package com.book.addict.domain;
 
-import com.book.addict.constants.FilterFieldToCompare;
+import com.book.addict.constants.BookDashboardFilterComparator;
+import com.book.addict.dto.CategoryDTO;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-public class Filter {
+public class BookDashboardFilter {
 
     private BigDecimal minPrice;
     private BigDecimal maxPrice;
     private String bookOrAuthorName;
-    private int pageNumber;
-    private FilterFieldToCompare field;
+    private List<CategoryDTO> categoryDTOList;
+    private BookDashboardFilterComparator field;
+
+    public List<CategoryDTO> getCategoryDTOList() {
+        return categoryDTOList;
+    }
+
+    public void setCategoryDTOList(List<CategoryDTO> categoryDTOList) {
+        this.categoryDTOList = categoryDTOList;
+    }
 
     public BigDecimal getMinPrice() {
         return minPrice;
@@ -36,19 +46,11 @@ public class Filter {
         this.bookOrAuthorName = bookOrAuthorName;
     }
 
-    public int getPageNumber() {
-        return pageNumber;
-    }
-
-    public void setPageNumber(int pageNumber) {
-        this.pageNumber = pageNumber;
-    }
-
-    public FilterFieldToCompare getField() {
+    public BookDashboardFilterComparator getField() {
         return field;
     }
 
-    public void setField(FilterFieldToCompare field) {
+    public void setField(BookDashboardFilterComparator field) {
         this.field = field;
     }
 }

@@ -1,7 +1,9 @@
 package com.book.addict.dao.impl;
 
 import com.book.addict.dao.BookDAO;
+import com.book.addict.domain.BookDashboardFilter;
 import com.book.addict.dto.BookDTO;
+import com.book.addict.dto.CategoryDTO;
 import com.book.addict.dto.PublisherDTO;
 import com.book.addict.dto.WriterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +11,16 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class JdbcBookDAO implements BookDAO {
 
     @Autowired
@@ -34,7 +39,7 @@ public class JdbcBookDAO implements BookDAO {
                 "    ID_PUBLISHER, " +
                 "    IMG_NAME " +
                 "FROM BA_BOOKS " +
-                "WHERE ID_BOOK = idBook;";
+                "WHERE ID_BOOK = :idBook;";
 
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("idBook", idBook);
@@ -70,6 +75,67 @@ public class JdbcBookDAO implements BookDAO {
         });
     }
 
+    @Override
+    public BigDecimal getMaxBookPrice() {
+        String sqlSelect = "" +
+                "SELECT " +
+                "   MAX(PRICE) MAX_PRICE " +
+                "FROM BA_BOOKS; ";
+
+        BigDecimal maxPrice = null;
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+
+        try {
+            maxPrice = jdbcTemplate.queryForObject(sqlSelect, namedParameters, new BigDecimalMapper());
+        } catch (EmptyResultDataAccessException ignored) {
+
+        }
+
+        return maxPrice == null? BigDecimal.valueOf(0) : maxPrice;
+
+    }
+
+    @Override
+    public List<Integer> getBookIdsByFilter(BookDashboardFilter filter) {
+        String sqlSelect = "" +
+                "SELECT DISTINCT " +
+                "   books.ID_BOOK " +
+                "FROM BA_BOOKS books " +
+                "INNER JOIN BA_BOOK_TO_CATEGORIES_MAP map " +
+                "   ON books.ID_BOOK = map.ID_BOOK " +
+                "WHERE " +
+                "    books.PRICE >= :minPrice AND " +
+                "    books.PRICE <= :maxPrice AND " +
+                "    map.ID_CATEGORY IN (:categories)";
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        namedParameters.addValue("minPrice", filter.getMinPrice());
+        namedParameters.addValue("maxPrice", filter.getMaxPrice());
+
+        List<Integer> categoriesIds = new ArrayList<>();
+        for (CategoryDTO category:filter.getCategoryDTOList()) {
+            categoriesIds.add(category.getIdCategory());
+        }
+        namedParameters.addValue("categories", categoriesIds);
+
+        return jdbcTemplate.execute(sqlSelect, namedParameters, preparedStatement -> {
+            ResultSet rs = preparedStatement.executeQuery();
+            List<Integer> results = new ArrayList<>();
+
+            while(rs.next()) {
+                Integer id = rs.getInt("ID_BOOK");
+                results.add(id);
+            }
+            return results;
+        });
+    }
+
+    class BigDecimalMapper implements RowMapper<BigDecimal> {
+        @Override
+        public BigDecimal mapRow(ResultSet rs, int rowNum) throws SQLException {
+            return rs.getBigDecimal("MAX_PRICE");
+        }
+    }
 
     class PublisherDTOMapper implements RowMapper<BookDTO> {
         @Override
