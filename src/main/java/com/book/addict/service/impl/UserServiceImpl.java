@@ -1,5 +1,6 @@
 package com.book.addict.service.impl;
 
+import com.book.addict.constants.UserType;
 import com.book.addict.dao.UserDAO;
 import com.book.addict.dto.UserDTO;
 import com.book.addict.service.UserService;
@@ -38,6 +39,10 @@ public class UserServiceImpl implements UserService {
         if(userExistingOptional.isPresent()) {
             return false;
         }
+
+        //Mock user type
+        userDTO.setUserType(UserType.CUSTOMER);
+
         userDAO.registerUser(userDTO);
         return true;
 

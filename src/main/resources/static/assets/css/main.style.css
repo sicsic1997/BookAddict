@@ -45,11 +45,11 @@ html, body {
 }
 
 .login-modal div:nth-child(1) .left div:nth-child(1) {
-    width: 150px;
+    width: 130px;
 }
 
 .login-modal div:nth-child(1) .left div:nth-child(4) {
-    width: 200px;
+    width: 185px;
 }
 
 
@@ -57,12 +57,12 @@ html, body {
     display: inline-block;
     text-align: left;
     background-color: #789a36;
-    width: 185px;
+    width: 165px;
 }
 
 .login-modal div:nth-child(1) .left div:nth-child(2) h1 {
     font-weight: bold;
-    font-size: 1.95em;
+    font-size: 1.75em;
 }
 
 .login-modal div:nth-child(1) .left div h1 {
@@ -70,8 +70,8 @@ html, body {
     font-weight: 300;
     color: #d7d7d7;
     margin: 0;
-    padding-left: 45px;
-    font-size: 2em;
+    padding-left: 40px;
+    font-size: 1.8em;
 }
 
 .login-modal div:nth-child(2) .right{
@@ -81,7 +81,7 @@ html, body {
     font-family: 'Montserrat Alternates', sans-serif;
 }
 
-.login-modal div:nth-child(2) .right div {
+.login-modal div:nth-child(2) .right > div {
     flex-basis: 0;
 }
 
@@ -136,6 +136,15 @@ html, body {
     opacity: 1;
 }
 
+.right .login-form .login-input:focus {
+    border-bottom: 1px solid #828282;
+}
+
+.right .login-form .login-input:focus::-webkit-input-placeholder
+{
+    color: transparent;
+}
+
 .right [class^="info"] {
     min-height: 75px;
 }
@@ -177,11 +186,26 @@ html, body {
 .right .info-2 {
     display: flex;
     align-items: flex-end;
-    justify-content: flex-end;
+}
+
+.right .info-2 > div {
+    display: flex;
+    align-items: center;
+    color: #dd2e2e;
+}
+
+.right .info-2 > div i {
+    font-size: 1.1em
 }
 
 .right .info-2 h5 {
     font-size: 0.75em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.right .info-2 > h5{
+    text-align: right;
+    flex-grow: 1;
     color: #767676;
 }
 

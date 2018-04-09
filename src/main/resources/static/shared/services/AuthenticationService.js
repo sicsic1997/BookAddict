@@ -23,6 +23,7 @@
         this.authenticate = authenticate;
         this.setCredentials = setCredentials;
         this.clearCredentials = clearCredentials;
+        this.registerUser = registerUser;
 
         var baseUrl = "http://localhost:8080/bookAddict/";
 
@@ -52,6 +53,10 @@
             $rootScope.USERCOOKIE = {};
             $cookies.remove('USERCOOKIE');
             $http.defaults.headers.common.Authorization = 'Basic';
+        }
+
+        function registerUser(registerData) {
+            return $http.post(baseUrl + "user/register", registerData);
         }
 
     }

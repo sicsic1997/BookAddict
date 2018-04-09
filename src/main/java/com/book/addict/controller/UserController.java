@@ -7,12 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@CrossOrigin
 @RequestMapping("bookAddict/user")
 public class UserController {
 
@@ -37,14 +35,14 @@ public class UserController {
             value = "/register",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> registerUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity registerUser(@RequestBody UserDTO userDTO) {
 
         String responseMessage = null;
         Boolean isSuccessful = userService.registerUser(userDTO);
         if(isSuccessful) {
-            return new ResponseEntity<Object>("User successful registered", HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.OK);
         } else {
-            return new ResponseEntity<Object>("User already exists in the database", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
