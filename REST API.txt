@@ -1,0 +1,108 @@
+1. Log In 
+GET: http://localhost:8080/bookAddict/user/login?userName=sicsic1997&password=vlad1997
+ON SUCCES 202-Accepted:
+{
+	"id":1,
+	"userName":"sicsic1997",
+	"firstName":"Vlad",
+	"lastName":"Coteanu",
+	"password":"vlad1997",
+	"userType":"CUSTOMER",
+	"phoneNumber":"0723899167",
+	"address":"Cal. Energ 9-11"
+}
+ON FAIL: 403-Forbidden
+
+2. Register
+POST: http://localhost:8080/bookAddict/user/register
+Consumes JSON:
+{
+	"userName": "sicsic1997",
+	"firstName": "Vlad",
+	"lastName": "Coteanu",
+	"password": "vlad1997",
+	"userType": "CUSTOMER",
+	"phoneNumber": "0723899167",
+	"address": "Cal. Energ 9-11"
+}
+ON SUCCES: 200-OK
+
+3. GetBooksByFilter
+POST: http://localhost:8080/bookAddict/bookDashboard/filter
+CONSUME JSON:
+{
+	"minPrice" : 0,
+	"maxPrice" : 100,
+	"bookOrAuthorName" : "issac",
+	"categoryDTOList" : [
+		{
+			"idCategory":1
+		},
+		{
+			"idCategory":2
+		},
+		{
+			"idCategory":3
+		},
+		{
+			"idCategory":4
+		}],
+	"field":"ALPHABETICAL"
+}
+
+Returns a list of books as JSON like:
+[
+   {
+      "idBook":2,
+      "bookName":"Robots in Neverland",
+      "deBook":"Being on of the best SF novel of Asimov, \"Robots in Neverland\" recreates the times of the year 3500. ",
+      "price":40,
+      "quantity":45,
+      "writer":{
+         "idWriter":4,
+         "deWriter":"Issac Asimov"
+      },
+      "publisher":{
+         "idPublisher":2,
+         "dePublisher":"Paralela 45",
+         "address":"Bd. Libertatii 23A",
+         "email":"paralela45@yahoo.co.uk",
+         "phoneNumber":"0723123123"
+      },
+      "categories":[
+         {
+            "idCategory":3,
+            "deCategory":"SF"
+         }
+      ],
+      "imgName":"robotsInNeverland.jpg"
+   }
+]
+
+4. GetAllCategories
+GET: http://localhost:8080/bookAddict/bookDashboard/getAllCategories
+Does not take any parameter;
+Produces a list of categories as JSON like this:
+[
+   {
+      "idCategory":1,
+      "deCategory":"Personal Development"
+   },
+   {
+      "idCategory":2,
+      "deCategory":"Fiction"
+   },
+   {
+      "idCategory":3,
+      "deCategory":"SF"
+   },
+   {
+      "idCategory":4,
+      "deCategory":"Biographies"
+   }
+]
+
+5. Get Max Book Price
+GET: http://localhost:8080/bookAddict/bookDashboard/getMaxBookPrice
+Returns a single value as maxPrice:
+46
