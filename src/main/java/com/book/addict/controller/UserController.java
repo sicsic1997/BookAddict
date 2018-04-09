@@ -20,11 +20,11 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(
-            value = "/logIn",
+            value = "/login",
             method = RequestMethod.GET)
-    public ResponseEntity<Object> logInUser(@RequestParam String userName, @RequestParam String password) {
+    public ResponseEntity<Object> loginUser(@RequestParam String userName, @RequestParam String password) {
 
-        UserDTO userDTO = userService.getUserByUserName(userName, password);
+        UserDTO userDTO = userService.getUserByUserNameAndPassword(userName, password);
         if(userDTO == null) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         } else {
@@ -39,9 +39,13 @@ public class UserController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> registerUser(@RequestBody UserDTO userDTO) {
 
-        userService.registerUser(userDTO);
-        return new ResponseEntity<Object>(HttpStatus.OK);
-
+        String responseMessage = null;
+        Boolean isSuccessful = userService.registerUser(userDTO);
+        if(isSuccessful) {
+            return new ResponseEntity<Object>("User successful registered", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<Object>("User already exists in the database", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
