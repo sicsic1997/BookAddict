@@ -5,6 +5,7 @@ html, body {
 
 .app-container {
     position:relative;
+    padding: 0;
     height: 100%;
 }
 
@@ -92,18 +93,19 @@ html, body {
     justify-content: center;
 }
 
-.right .brand img {
+.brand img {
     width: 40px;
     margin-bottom: 7px;
     margin-right: 5px;
 }
 
-.right .brand .text {
+.brand .text {
     color: #636363;
     font-size: 1.6em;
+    font-family: 'Montserrat Alternates', sans-serif;
 }
 
-.right .brand .text span {
+.brand .text span {
     font-weight: bold;
     margin-left: 2px;
     color: #535353;
@@ -213,4 +215,64 @@ html, body {
     font-weight: bold;
     color: #535353;
     cursor: pointer;
+}
+
+.book-addict-container {
+    padding: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #efefef;
+}
+
+.book-addict-container > div:first-child {
+    height: 8%;
+    min-height: 60px;
+    background-color: #ffffff;
+}
+
+.app-header {
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.app-header .user {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 16px;
+}
+
+.app-header .user .text {
+    color: #636363;
+    font-size: 0.9em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.app-header .user img {
+    width: 24px;
+    border-radius: 50%;
+    background-color: #c5c5c5;
+    padding: 2px;
+}
+
+.app-header .brand {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.app-header .brand > * {
+    margin-bottom: 0;
+}
+
+.app-header .brand img {
+    width: 32px;
+}
+
+.app-header .header-menu {
+    display: flex;
+    justify-content: flex-end;
 }

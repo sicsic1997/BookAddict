@@ -41,9 +41,9 @@
                     return transition.to().name === state;
                 });
             if (isRestrictedRoute && !isUserLogged) {
-                $timeout(function(){
-                    $state.go('login', true);
-                });
+                // $timeout(function(){
+                //     $state.go('login', true);
+                // });
             }
         });
 
