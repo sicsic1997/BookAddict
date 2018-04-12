@@ -8,13 +8,23 @@
 
     Controller.$inject = [
         '$scope',
-        '$state'
+        '$state',
+        'AuthenticationService'
     ];
 
     function Controller($scope,
-                        $state) {
+                        $state,
+                        AuthenticationService) {
 
         var vm = this;
+
+        /////////
+
+        function _initCtrl() {
+            vm.userDetails = AuthenticationService.getUserDetails();
+        }
+
+        _initCtrl();
     }
 
 })();

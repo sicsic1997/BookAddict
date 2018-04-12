@@ -20,12 +20,15 @@
                                    $cookies,
                                    BaseEncodingService) {
 
+        var baseUrl = "http://localhost:8080/bookAddict/",
+            userDetails = {};
+
         this.authenticate = authenticate;
         this.setCredentials = setCredentials;
         this.clearCredentials = clearCredentials;
         this.registerUser = registerUser;
-
-        var baseUrl = "http://localhost:8080/bookAddict/";
+        this.getUserDetails = getUserDetails;
+        this.setUserDetails = setUserDetails;
 
         ////////////////
 
@@ -33,13 +36,15 @@
             return $http.get(baseUrl + "user/login?userName=" + username + "&password=" + password);
         }
 
-        function setCredentials(username, password) {
+        function setCredentials(userData, userName, password) {
             var cookieExp = new Date(),
-                authdata = BaseEncodingService.encode(username + ':' + password);
+                authdata = BaseEncodingService.encode(userName + ':' + password);
+
+            setUserDetails(userData);
 
             $rootScope.USERCOOKIE = {
                 loggedUser: {
-                    username: username,
+                    userDetails: userData,
                     authdata: authdata
                 }
             };
@@ -52,11 +57,20 @@
         function clearCredentials() {
             $rootScope.USERCOOKIE = {};
             $cookies.remove('USERCOOKIE');
-            $http.defaults.headers.common.Authorization = 'Basic';
+            setUserDetails({});
+            $http.defaults.headers.common['Authorization'] = 'Basic';
         }
 
         function registerUser(registerData) {
             return $http.post(baseUrl + "user/register", registerData);
+        }
+
+        function getUserDetails() {
+            return userDetails;
+        }
+
+        function setUserDetails(userData) {
+            userDetails = angular.copy(userData);
         }
 
     }

@@ -48,8 +48,9 @@
             vm.actionInProgress = true;
             AuthenticationService.authenticate(vm.userName, vm.password)
                 .then(function (response) {
+                    var result = response.data;
                     vm.actionInProgress = false;
-                    AuthenticationService.setCredentials(vm.userName, vm.password);
+                    AuthenticationService.setCredentials(result, vm.userName, vm.password);
                     $state.go('viewBookDashboard');
                 }, function(response) {
                     vm.actionInProgress = false;

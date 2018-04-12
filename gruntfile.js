@@ -45,6 +45,16 @@
                       cwd: './node_modules/@uirouter/angularjs/release/',
                       src: 'angular-ui-router.min*',
                       dest: scriptsDirectory
+                    }, {
+                        expand: true,
+                        cwd: './node_modules/bootstrap/dist/js/',
+                        src: 'bootstrap.min*',
+                        dest: scriptsDirectory
+                    }, {
+                        expand: true,
+                        cwd: './node_modules/jquery/dist/',
+                        src: 'jquery.min*',
+                        dest: scriptsDirectory
                     }]
                 }
             }
