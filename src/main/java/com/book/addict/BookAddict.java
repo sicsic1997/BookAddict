@@ -1,4 +1,4 @@
-package com.book.addict.main;
+package com.book.addict;
 
 
 import org.slf4j.Logger;
