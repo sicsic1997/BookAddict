@@ -273,6 +273,31 @@ html, body {
 }
 
 .app-header .header-menu {
-    display: flex;
     justify-content: flex-end;
+    text-align: right;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+}
+
+.header-menu .dropdown-toggle {
+    cursor: pointer;
+}
+
+.header-menu .dropdown-menu {
+    right: 1em;
+    top: 2em;
+    padding: 0;
+    left: auto;
+    text-align: center;
+    cursor: pointer;
+}
+
+.header-menu .dropdown-menu .dropdown-item {
+    font-size: 0.9em;
+}
+
+.header-menu .dropdown-menu .dropdown-item:active {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #f8f9fa;
 }
