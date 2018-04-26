@@ -217,6 +217,8 @@ html, body {
     cursor: pointer;
 }
 
+/*BOOK DASHBOARD STYLE*/
+
 .book-addict-container {
     padding: 0;
     height: 100%;
@@ -224,6 +226,8 @@ html, body {
     top: 0;
     left: 0;
     background-color: #efefef;
+    display: flex;
+    flex-direction: column;
 }
 
 .book-addict-container > div:first-child {
@@ -231,6 +235,16 @@ html, body {
     min-height: 60px;
     background-color: #ffffff;
 }
+
+.book-addict-container > div:nth-child(2) {
+    width: 100%;
+    margin: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/*HEADER STYLE*/
 
 .app-header {
     height: 100%;
@@ -277,10 +291,21 @@ html, body {
     text-align: right;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9em;
+    color: #636363;
 }
 
 .header-menu .dropdown-toggle {
     cursor: pointer;
+}
+
+.header-menu .dropdown-toggle::after {
+    color: #c5c5c5;
+    transition: color 0.1s ease-in-out;
+}
+
+.header-menu .dropdown-toggle:hover::after {
+    color: #636363;
+    transition: color 0.1s ease-in-out;
 }
 
 .header-menu .dropdown-menu {
@@ -294,10 +319,24 @@ html, body {
 
 .header-menu .dropdown-menu .dropdown-item {
     font-size: 0.9em;
+    color: #636363;
 }
 
 .header-menu .dropdown-menu .dropdown-item:active {
     color: #16181b;
     text-decoration: none;
     background-color: #f8f9fa;
+}
+
+.dashboard-container .top-filters {
+    max-height: 50px;
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.dashboard-container .books-view {
+    flex-grow: 1;
+    display: flex;
 }

@@ -27,6 +27,11 @@
                         cwd: './node_modules/bootstrap/dist/css',
                         src: 'bootstrap.min.css*',
                         dest: stylesDirectory
+                    },  {
+                        expand: true,
+                        cwd: './node_modules/angularjs-slider/dist/',
+                        src: 'rzslider.min.css',
+                        dest: stylesDirectory
                     }]
                 },
                 jsNpmToScripts: {
@@ -35,25 +40,35 @@
                       cwd: './node_modules/angular/',
                       src: 'angular.min*',
                       dest: scriptsDirectory
-                    }, {
+                    },  {
                         expand: true,
                         cwd: './node_modules/angular-cookies/',
                         src: 'angular-cookies.min*',
                         dest: scriptsDirectory
-                    }, {
+                    },  {
                       expand: true,
                       cwd: './node_modules/@uirouter/angularjs/release/',
                       src: 'angular-ui-router.min*',
                       dest: scriptsDirectory
-                    }, {
+                    },  {
                         expand: true,
                         cwd: './node_modules/bootstrap/dist/js/',
                         src: 'bootstrap.min*',
                         dest: scriptsDirectory
-                    }, {
+                    },  {
                         expand: true,
                         cwd: './node_modules/jquery/dist/',
                         src: 'jquery.min*',
+                        dest: scriptsDirectory
+                    },  {
+                        expand: true,
+                        cwd: './node_modules/angularjs-slider/dist/',
+                        src: 'rzslider.min.js',
+                        dest: scriptsDirectory
+                    },  {
+                        expand: true,
+                        cwd: './node_modules/ui-bootstrap4/dist/',
+                        src: '*.js',
                         dest: scriptsDirectory
                     }]
                 }

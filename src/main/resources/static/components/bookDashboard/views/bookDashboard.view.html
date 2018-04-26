@@ -2,5 +2,36 @@
     <div ng-controller="sharedHeaderController as headerController"
          ng-include="'shared/components/header/header.view.html'"></div>
 
+    <div class="dashboard-container">
+        <div class="row mx-0 top-filters">
+            <div class="col-md-3">
+                <rzslider class="price-slider"
+                          rz-slider-model="DashCtrl.priceSlider.minValue"
+                          rz-slider-high="DashCtrl.priceSlider.maxValue"
+                          rz-slider-options="DashCtrl.priceSlider.options">
+                </rzslider>
+            </div>
+            <div class="col-md-3 typhead-search">
+                <span>
+                    <i class="material-icons">search</i>
+                </span>
+                <input type="text"
+                       placeholder="Search by book or author name"
+                       class="form-control"
+                       ng-model="DashCtrl.typheadSelection"
+                       typeahead-on-select="DashCtrl.typeheadOnSelect($item, $model)"
+                       typeahead-no-results="noResults"
+                       uib-typeahead="entity.name for entity in DashCtrl.typheadOptions | filter:$viewValue | limitTo:8">
+            </div>
+        </div>
+        <div class="row mx-0 books-view">
+            <div class="col-md-3 pr-0">
+
+            </div>
+            <div class="col-md pl-0">
+
+            </div>
+        </div>
+    </div>
 
 </div>

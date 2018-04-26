@@ -28,7 +28,7 @@
                 parent: 'bookDashboard',
                 url: '/view',
                 templateUrl: 'components/bookDashboard/views/bookDashboard.view.html',
-                controller: 'BookDashboardController'
+                controller: 'BookDashboardController as DashCtrl'
             })
 
     }

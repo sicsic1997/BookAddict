@@ -5,7 +5,9 @@
     angular.module('bookAddict',[
         'ui.router',
         'bookDashboard',
-        'ngCookies'
+        'ngCookies',
+        'rzModule',
+        'ui.bootstrap'
     ]);
 
 })();
