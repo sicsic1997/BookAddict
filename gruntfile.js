@@ -32,6 +32,11 @@
                         cwd: './node_modules/angularjs-slider/dist/',
                         src: 'rzslider.min.css',
                         dest: stylesDirectory
+                    },  {
+                        expand: true,
+                        cwd: './node_modules/angular-material/',
+                        src: 'angular-material.min.css',
+                        dest: stylesDirectory
                     }]
                 },
                 jsNpmToScripts: {
@@ -69,6 +74,26 @@
                         expand: true,
                         cwd: './node_modules/ui-bootstrap4/dist/',
                         src: '*.js',
+                        dest: scriptsDirectory
+                    },  {
+                        expand: true,
+                        cwd: './node_modules/angular-animate/',
+                        src: 'angular-animate.min.js',
+                        dest: scriptsDirectory
+                    },  {
+                        expand: true,
+                        cwd: './node_modules/angular-aria/',
+                        src: 'angular-aria.min.js',
+                        dest: scriptsDirectory
+                    },  {
+                        expand: true,
+                        cwd: './node_modules/angular-messages/',
+                        src: 'angular-messages.min.js',
+                        dest: scriptsDirectory
+                    },  {
+                        expand: true,
+                        cwd: './node_modules/angular-material/',
+                        src: 'angular-material.min.js',
                         dest: scriptsDirectory
                     }]
                 }

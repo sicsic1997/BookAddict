@@ -7,7 +7,9 @@
         'bookDashboard',
         'ngCookies',
         'rzModule',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'ngMaterial',
+        'ngMessages'
     ]);
 
 })();

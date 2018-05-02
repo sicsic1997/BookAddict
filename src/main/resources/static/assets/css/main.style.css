@@ -329,7 +329,7 @@ html, body {
 }
 
 .dashboard-container .top-filters {
-    max-height: 50px;
+    max-height: 70px;
     display: flex;
     flex-grow: 1;
     justify-content: flex-end;

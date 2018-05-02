@@ -4,6 +4,21 @@
 
     <div class="dashboard-container">
         <div class="row mx-0 top-filters">
+            <div class="col-md-2">
+                <div class="order-dropdown">
+                    <md-input-container class="md-block" flex-gt-sm="">
+                        <md-select ng-model="DashCtrl.orderSelection"
+                                   ng-change="DashCtrl.sortBooks()"
+                                   placeholder="Newest Arrivals">
+                            <md-option ng-repeat="orderOption in DashCtrl.orderOptions"
+                                       ng-value="orderOption"
+                                       ng-selected="DashCtrl.orderOptions.indexOf(orderOption) == 0">
+                                {{orderOption.description}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </div>
             <div class="col-md-3">
                 <rzslider class="price-slider"
                           rz-slider-model="DashCtrl.priceSlider.minValue"
