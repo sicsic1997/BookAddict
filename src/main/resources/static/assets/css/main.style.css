@@ -329,9 +329,7 @@ html, body {
 }
 
 .dashboard-container .top-filters {
-    max-height: 70px;
     display: flex;
-    flex-grow: 1;
     justify-content: flex-end;
     align-items: center;
 }
@@ -339,4 +337,95 @@ html, body {
 .dashboard-container .books-view {
     flex-grow: 1;
     display: flex;
+}
+
+.categories {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.categories h1 {
+    font-size: 0.9rem;
+    color: #636363;
+}
+
+.categories h2 {
+    font-size: 0.85rem;
+}
+
+.categories .cat-checkbox {
+    width: 1.1rem;
+    height: 1.1rem;
+    cursor: pointer;
+}
+
+.cat-checkbox:focus {
+    outline:0;
+}
+
+.cat-checkbox div {
+    border: 0.13rem solid;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.2rem;
+}
+
+.cat-checkbox div:nth-child(1) {
+    border-color: rgba(0, 0, 0, 0.37);
+    background-color: transparent;
+}
+
+.cat-checkbox div:nth-child(2) {
+    border-color: #99c446;
+    background-color: #99c446;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cat-checkbox .check-mark::selection {
+    background-color: transparent;
+}
+
+.cat-checkbox .check-mark {
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.separator {
+    width: 100%;
+    height: 0.15rem;
+    background-color: #e1e1e1;
+    border-radius: 14px;
+}
+
+.categories .separator {
+    width: 70%;
+    min-width: 250px;
+}
+
+.categories > .row {
+    overflow-y: auto;
+    display: flex;
+    max-height:350px;
+    width: 100%;
+    max-width:250px;
+    color: #636363;
+}
+
+.categories > .row [class*="col-"] {
+    display: flex;
+    align-items: center;
+}
+
+.books-view .filter-details {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.filter-details .selected-categories h1 {
+    font-size: 0.85rem;
+    color: #636363;
+}
+
+.filter-details .separator {
+    width: 100%;
 }

@@ -3,7 +3,7 @@
          ng-include="'shared/components/header/header.view.html'"></div>
 
     <div class="dashboard-container">
-        <div class="row mx-0 top-filters">
+        <div class="row mx-0 px-5 top-filters">
             <div class="col-md-2">
                 <div class="order-dropdown">
                     <md-input-container class="md-block" flex-gt-sm="">
@@ -26,7 +26,7 @@
                           rz-slider-options="DashCtrl.priceSlider.options">
                 </rzslider>
             </div>
-            <div class="col-md-3 typhead-search">
+            <div class="col-md-3 pr-0 typhead-search">
                 <span>
                     <i class="material-icons">search</i>
                 </span>
@@ -39,12 +39,33 @@
                        uib-typeahead="entity.name for entity in DashCtrl.typheadOptions | filter:$viewValue | limitTo:8">
             </div>
         </div>
-        <div class="row mx-0 books-view">
+        <div class="row mx-0 mt-2 pl-5 books-view">
             <div class="col-md-3 pr-0">
+                <div class="categories">
+                    <h1 class="mb-0">CATEGORIES</h1>
+                    <div class="separator my-2"></div>
+                    <div class="row">
+                        <div class="col-md-12 my-2" ng-repeat="category in DashCtrl.categories">
+                            <div class="cat-checkbox" ng-click="DashCtrl.toggleCheckbox(category)">
+                                <div ng-hide="category.isSelected">
 
+                                </div>
+                                <div ng-show="category.isSelected">
+                                    <i class="material-icons check-mark">done</i>
+                                </div>
+                            </div>
+                            <h2 class="mb-0 ml-3">{{category.description}}</h2>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md pl-0">
-
+            <div class="col-md pl-0 pr-5">
+                <div class="filter-details">
+                    <div class="selected-categories">
+                        <h1 class="mb-0">ALL BOOKS</h1>
+                    </div>
+                    <div class="separator my-2"></div>
+                </div>
             </div>
         </div>
     </div>
