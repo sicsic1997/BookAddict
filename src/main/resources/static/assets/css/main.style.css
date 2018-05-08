@@ -452,6 +452,7 @@ html, body {
     display: flex;
     flex-direction: column;
     min-height: 350px;
+    min-width: 267px;
 }
 
 .book > div {
@@ -523,4 +524,10 @@ html, body {
 
 .more-icon i::selection {
     background-color: transparent;
+}
+
+@media (min-width: 768px) {
+    .book {
+        max-width: 267px;
+    }
 }
