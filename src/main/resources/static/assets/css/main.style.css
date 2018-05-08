@@ -1,6 +1,7 @@
 html, body {
     width: 100%;
     height: 100%;
+    background-color: #efefef;
 }
 
 .app-container {
@@ -117,6 +118,7 @@ html, body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .right .login-form .login-input {
@@ -126,6 +128,7 @@ html, body {
     border-bottom: 1px solid #d4d4d4;
     text-align: center;
     color: #686868;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .right .login-form .login-input[type="password"] {
@@ -136,6 +139,7 @@ html, body {
     color: #b7b7b7;
     letter-spacing: 0;
     opacity: 1;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .right .login-form .login-input:focus {
@@ -221,11 +225,6 @@ html, body {
 
 .book-addict-container {
     padding: 0;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #efefef;
     display: flex;
     flex-direction: column;
 }
@@ -234,6 +233,9 @@ html, body {
     height: 8%;
     min-height: 60px;
     background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .book-addict-container > div:nth-child(2) {
@@ -341,10 +343,11 @@ html, body {
 
 .categories {
     font-family: 'Montserrat', sans-serif;
+    padding-right: 6.5rem;
 }
 
 .categories h1 {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #636363;
 }
 
@@ -398,9 +401,18 @@ html, body {
     border-radius: 14px;
 }
 
-.categories .separator {
-    width: 70%;
-    min-width: 250px;
+.categories > .row::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.categories > .row::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(158, 158, 158, 0.3);
+    border-radius: 0.1rem;
+}
+
+.categories > .row::-webkit-scrollbar-thumb {
+    border-radius: 0.1rem;
+    background-color: rgba(190, 190, 190, 0.3);
 }
 
 .categories > .row {
@@ -408,7 +420,6 @@ html, body {
     display: flex;
     max-height:350px;
     width: 100%;
-    max-width:250px;
     color: #636363;
 }
 
@@ -419,6 +430,9 @@ html, body {
 
 .books-view .filter-details {
     font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
 
 .filter-details .selected-categories h1 {
@@ -428,4 +442,85 @@ html, body {
 
 .filter-details .separator {
     width: 100%;
+}
+
+.all-books.row {
+    flex-grow: 3;
+}
+
+.book {
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+}
+
+.book > div {
+    flex-basis: 0;
+}
+
+.book .book-image {
+    background-color: #dddddd;
+    flex-grow: 2;
+}
+
+.book > .row {
+    padding: 0 15px;
+    flex-grow: 1;
+    background-color: white;
+    max-height: 80px;
+}
+
+.book-details {
+    font-family: 'Montserrat', sans-serif;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0 0 80%;
+}
+
+.book-details h1 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    color: #6f6f6f;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.book-details h2 {
+    font-size: 0.8rem;
+    color: #99c446;
+    font-weight: 600;
+    letter-spacing: 0.02rem;
+}
+
+.more-icon {
+    flex: 0 0 20%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.more-icon i {
+    margin-right: -0.5rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.more-icon i:nth-child(1) {
+    color: #e0e0e0;
+}
+
+.more-icon i:nth-child(2) {
+    color: #99c446;
+}
+
+.more-icon i:focus {
+    outline:0;
+}
+
+.more-icon i::selection {
+    background-color: transparent;
 }
