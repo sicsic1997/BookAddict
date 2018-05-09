@@ -72,7 +72,7 @@ Returns a list of books as JSON like:
       "categories":[
          {
             "idCategory":3,
-            "deCategory":"SF"
+            "description":"SF"
          }
       ],
       "imgName":"robotsInNeverland.jpg"
@@ -86,19 +86,19 @@ Produces a list of categories as JSON like this:
 [
    {
       "idCategory":1,
-      "deCategory":"Personal Development"
+      "description":"Personal Development"
    },
    {
       "idCategory":2,
-      "deCategory":"Fiction"
+      "description":"Fiction"
    },
    {
       "idCategory":3,
-      "deCategory":"SF"
+      "description":"SF"
    },
    {
       "idCategory":4,
-      "deCategory":"Biographies"
+      "description":"Biographies"
    }
 ]
 

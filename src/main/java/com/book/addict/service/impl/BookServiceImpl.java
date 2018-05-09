@@ -99,7 +99,8 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public List<CategoryDTO> getAllCategories() {
-        return categoryDAO.getAllCategories();
+        Comparator<CategoryDTO> comparator = Comparator.comparing(CategoryDTO::getDescription);
+        return categoryDAO.getAllCategories().stream().sorted(comparator).collect(Collectors.toList());
     }
 
     @Override

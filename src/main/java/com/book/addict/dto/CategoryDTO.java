@@ -3,7 +3,7 @@ package com.book.addict.dto;
 public class CategoryDTO {
 
     private int idCategory;
-    private String deCategory;
+    private String description;
 
     public int getIdCategory() {
         return idCategory;
@@ -13,11 +13,11 @@ public class CategoryDTO {
         this.idCategory = idCategory;
     }
 
-    public String getDeCategory() {
-        return deCategory;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDeCategory(String deCategory) {
-        this.deCategory = deCategory;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
