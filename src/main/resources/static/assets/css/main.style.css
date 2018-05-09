@@ -446,13 +446,14 @@ html, body {
 
 .all-books.row {
     flex-grow: 3;
+    justify-content: center;
 }
 
 .book {
     display: flex;
     flex-direction: column;
     min-height: 350px;
-    min-width: 267px;
+    min-width: 200px;
 }
 
 .book > div {
@@ -462,6 +463,15 @@ html, body {
 .book .book-image {
     background-color: #dddddd;
     flex-grow: 2;
+    position: relative;
+}
+
+.book-image img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
 }
 
 .book > .row {
@@ -528,6 +538,6 @@ html, body {
 
 @media (min-width: 768px) {
     .book {
-        max-width: 267px;
+        max-width: 250px;
     }
 }

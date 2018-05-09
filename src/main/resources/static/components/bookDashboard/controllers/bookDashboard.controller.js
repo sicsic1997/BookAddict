@@ -8,11 +8,13 @@
 
     Controller.$inject = [
         '$scope',
-        '$state'
+        '$state',
+        'CoreApiService'
     ];
 
     function Controller($scope,
-                        $state) {
+                        $state,
+                        CoreApiService) {
 
         var vm = this;
 
@@ -107,6 +109,7 @@
 
         function _initCtrl() {
             vm.orderSelection = vm.orderOptions[0];
+            _loadCategories();
         }
 
         function toggleBookSelection(book) {
@@ -114,8 +117,16 @@
             console.log(vm.books);
         }
 
-        $scope.state = 'CA';
 
+        function _loadCategories() {
+            CoreApiService
+                .getCategories()
+                .then(function(response) {
+                    vm.categories = response.data;
+                }, function() {
+                   console.log("faile to load categories");
+                });
+        }
     }
 
 })();
