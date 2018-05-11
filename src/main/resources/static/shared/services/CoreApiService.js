@@ -15,6 +15,12 @@
         return {
             getCategories: function () {
                 return $http.get(baseUrl + 'bookDashboard/getAllCategories', null);
+            },
+            getMaxPrice: function() {
+                return $http.get(baseUrl + 'bookDashboard/getMaxBookPrice', null);
+            },
+            getBooksByFilter: function(data) {
+                return $http.post(baseUrl + 'bookDashboard/filter', data);
             }
         };
     }

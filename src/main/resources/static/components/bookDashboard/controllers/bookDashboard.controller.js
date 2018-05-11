@@ -19,16 +19,23 @@
         var vm = this;
 
         vm.priceSlider = {
-            minValue: 30,
-            maxValue: 90,
+            minValue: 0,
+            maxValue: 0,
             options: {
                 floor: 0,
                 ceil: 150,
                 translate: function(value) {
                     return value + ' RON' + '\n';
-                }
+                },
+                onChange: _loadBooks
             }
         };
+
+        vm.categoryLoadingStatus = false;
+        vm.priceLoadingStatus = false;
+        vm.booksLoadingStatus = false;
+
+        vm.categories = [];
 
         vm.typheadOptions = [
             {name: "Absalom, Absalom!", type: 'Book'},
@@ -49,22 +56,6 @@
             {id: 1,description: 'Relevance'},
             {id: 2,description: 'Price Low to High'},
             {id: 3,description: 'Price High to Low'}
-        ];
-
-        vm.categories = [
-            {id: 0,description: 'Adventure', isSelected: false},
-            {id: 1,description: 'Cooking', isSelected: false},
-            {id: 2,description: 'Crime', isSelected: false},
-            {id: 11,description: 'Drama', isSelected: false},
-            {id: 3,description: 'Educational', isSelected: false},
-            {id: 10,description: 'Fantasy', isSelected: false},
-            {id: 4,description: 'History', isSelected: false},
-            {id: 5,description: 'Mystery', isSelected: false},
-            {id: 6,description: 'Religion', isSelected: false},
-            {id: 7,description: 'Romance', isSelected: false},
-            {id: 8,description: 'Sports', isSelected: false},
-            {id: 9,description: 'Thriller', isSelected: false},
-            {id: 9,description: 'Travel', isSelected: false}
         ];
 
         vm.books = [
@@ -96,20 +87,25 @@
 
         function typeheadOnSelect($item, $model) {
             console.log(vm.typheadSelection.name);
+            _loadBooks();
         }
 
         function sortBooks() {
             console.log(vm.orderSelection);
+            _loadBooks();
         }
 
         function toggleCheckbox(element) {
             element.isSelected = !element.isSelected;
-            console.log(vm.categories);
+            _loadBooks();
         }
 
         function _initCtrl() {
             vm.orderSelection = vm.orderOptions[0];
+
+
             _loadCategories();
+            _loadMaxPrice();
         }
 
         function toggleBookSelection(book) {
@@ -119,13 +115,71 @@
 
 
         function _loadCategories() {
+            vm.categoryLoadingStatus = true;
+
             CoreApiService
                 .getCategories()
                 .then(function(response) {
                     vm.categories = response.data;
+                    vm.categoryLoadingStatus = false;
+                    _loadBooks();
                 }, function() {
-                   console.log("faile to load categories");
+                    console.log("failed to load categories");
+                    vm.categoryLoadingStatus = false;
                 });
+        }
+
+        function _loadMaxPrice() {
+            vm.priceLoadingStatus = true;
+
+            CoreApiService
+                .getMaxPrice()
+                .then(function(response) {
+                    vm.priceSlider.options.ceil = response.data;
+                    vm.priceSlider.maxValue = vm.priceSlider.options.ceil;
+                    vm.priceLoadingStatus = false;
+                    _loadBooks();
+                }, function() {
+                    console.log("failed to load max price");
+                    vm.priceLoadingStatus = false;
+                });
+        }
+
+        function _loadBooks() {
+            var data = _getSelectedFilters();
+
+            vm.booksLoadingStatus = true;
+            CoreApiService
+                .getBooksByFilter(data)
+                .then(function(response) {
+                    vm.books = response.data;
+                    vm.booksLoadingStatus = false;
+                }, function() {
+                    console.log("failed to load books");
+                    vm.booksLoadingStatus = false;
+                });
+        }
+
+        function _getSelectedFilters() {
+            var data = {};
+
+            data.minPrice = vm.priceSlider.minValue;
+            data.maxPrice = vm.priceSlider.maxValue;
+            data.bookOrAuthorName = '';
+            data.categoryDTOList = _getSelectedCategories();
+            data.field = 'ALPHABETICAL';
+
+            return data;
+        }
+
+        function _getSelectedCategories() {
+            var selectedCategories = vm.categories.map(function(category) {
+                if(category.isSelected) {
+                    return category.idCategory;
+                }
+            });
+
+            return selectedCategories;
         }
     }
 
