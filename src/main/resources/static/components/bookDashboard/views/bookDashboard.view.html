@@ -1,2 +1,102 @@
-<h1>DASHBOARD</h1>
-<a ui-sref="main.login">go to login</a>
+<div class="container-fluid book-addict-container">
+    <div ng-controller="sharedHeaderController as headerController"
+         ng-include="'shared/components/header/header.view.html'"></div>
+
+    <div class="dashboard-container">
+        <div class="row mx-0 mt-2 px-5 top-filters">
+            <div class="col-md-2">
+                <div class="order-dropdown">
+                    <md-input-container class="md-block" flex-gt-sm="">
+                        <md-select ng-model="DashCtrl.orderSelection"
+                                   ng-change="DashCtrl.sortBooks()"
+                                   placeholder="Newest Arrivals">
+                            <md-option ng-repeat="orderOption in DashCtrl.orderOptions"
+                                       ng-value="orderOption"
+                                       ng-selected="DashCtrl.orderOptions.indexOf(orderOption) == 0">
+                                {{orderOption.description}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <rzslider class="price-slider"
+                          rz-slider-model="DashCtrl.priceSlider.minValue"
+                          rz-slider-high="DashCtrl.priceSlider.maxValue"
+                          rz-slider-options="DashCtrl.priceSlider.options">
+                </rzslider>
+            </div>
+            <div class="col-md-3 pr-0 typhead-search">
+                <span>
+                    <i class="material-icons">search</i>
+                </span>
+                <input type="text"
+                       placeholder="Search by book or author name"
+                       class="form-control"
+                       ng-model="DashCtrl.typheadSelection"
+                       ng-change="DashCtrl.getTypeheadOptions()"
+                       typeahead-on-select="DashCtrl.typeheadOnSelect($item, $model)"
+                       typeahead-no-results="noResults"
+                       typeahead-focus-on-select="false"
+                       uib-typeahead="entity as entity.text for entity in DashCtrl.typheadOptions | filter:$viewValue | limitTo:8">
+            </div>
+        </div>
+        <div class="row mx-0 mt-2 pl-5 books-view">
+            <div class="col-md-3 pr-0">
+                <div class="categories">
+                    <h1 class="mb-0">CATEGORIES</h1>
+                    <div class="separator my-2"></div>
+                    <div class="row mx-0">
+                        <div class="col-md-12 my-2 pl-0" ng-repeat="category in DashCtrl.categories">
+                            <div class="cat-checkbox" ng-click="DashCtrl.toggleCheckbox(category)">
+                                <div ng-hide="category.isSelected">
+
+                                </div>
+                                <div ng-show="category.isSelected">
+                                    <i class="material-icons check-mark">done</i>
+                                </div>
+                            </div>
+                            <h2 class="mb-0 ml-3">{{category.description}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md pl-0 pr-5">
+                <div class="filter-details">
+                    <div class="selected-categories">
+                        <h1 class="mb-0">ALL BOOKS</h1>
+                    </div>
+                    <div class="separator my-2"></div>
+                    <div class="all-books row px-3 pt-3">
+                        <div ng-hide="DashCtrl.books.length" class="row no-books pt-5">
+                            <div class="col-md-12 text-center">
+                                <h1>
+                                    <i class="material-icons">search</i>
+                                    <span>No results</span>
+                                </h1>
+                                <h2>Please refine your search criteria.</h2>
+                            </div>
+                        </div>
+                        <div ng-show="DashCtrl.books.length" class="col-md book mb-4" ng-repeat="book in DashCtrl.books">
+                            <div class="book-image">
+                                <img ng-show="book.imgName" src="assets/images/{{book.imgName}}"/>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="book-details py-2">
+                                    <h1 title="{{book.bookName}}">{{book.bookName}}</h1>
+                                    <h2>{{book.writer.deWriter}}</h2>
+                                </div>
+                                <div class="more-icon">
+                                    <i class="material-icons" ng-hide="book.isSelected" ng-click="DashCtrl.toggleBookSelection(book)">check_circle</i>
+                                    <i class="material-icons" ng-show="book.isSelected" ng-click="DashCtrl.toggleBookSelection(book)">check_circle</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

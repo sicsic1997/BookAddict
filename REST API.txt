@@ -72,7 +72,7 @@ Returns a list of books as JSON like:
       "categories":[
          {
             "idCategory":3,
-            "deCategory":"SF"
+            "description":"SF"
          }
       ],
       "imgName":"robotsInNeverland.jpg"
@@ -86,19 +86,19 @@ Produces a list of categories as JSON like this:
 [
    {
       "idCategory":1,
-      "deCategory":"Personal Development"
+      "description":"Personal Development"
    },
    {
       "idCategory":2,
-      "deCategory":"Fiction"
+      "description":"Fiction"
    },
    {
       "idCategory":3,
-      "deCategory":"SF"
+      "description":"SF"
    },
    {
       "idCategory":4,
-      "deCategory":"Biographies"
+      "description":"Biographies"
    }
 ]
 
@@ -106,3 +106,33 @@ Produces a list of categories as JSON like this:
 GET: http://localhost:8080/bookAddict/bookDashboard/getMaxBookPrice
 Returns a single value as maxPrice:
 46
+
+6. Get All Entries For Dashboard Text Filter
+GET: http://localhost:8080/bookAddict/bookDashboard/getAllEntriesForTextFilter
+Example of response:
+[
+   {
+      "text":"Dan Brown",
+      "type":"AUTHOR"
+   },
+   {
+      "text":"Mark Twain",
+      "type":"AUTHOR"
+   },
+   {
+      "text":"Donald Trump",
+      "type":"AUTHOR"
+   },
+   {
+      "text":"Issac Asimov",
+      "type":"AUTHOR"
+   },
+   {
+      "text":"Steve Jobs",
+      "type":"BOOK"
+   },
+   {
+      "text":"Robots in Neverland",
+      "type":"BOOK"
+   }
+]

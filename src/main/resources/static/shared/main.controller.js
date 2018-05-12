@@ -13,7 +13,8 @@
         '$state',
         '$cookies',
         '$http',
-        '$timeout'
+        '$timeout',
+        'AuthenticationService'
     ];
 
     function Controller($scope,
@@ -22,16 +23,18 @@
                         $state,
                         $cookies,
                         $http,
-                        $timeout) {
+                        $timeout,
+                        AuthenticationService) {
 
         var vm = this,
             nonRestrictedRoutes = ['login', 'register'];
 
-        $rootScope.USERCOOKIE = $cookies.getObject('globals') || {};
+        $rootScope.USERCOOKIE = $cookies.getObject('USERCOOKIE') || {};
 
         (function init() {
             if ($rootScope.USERCOOKIE.loggedUser) {
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.USERCOOKIE.loggedUser.authdata;
+                AuthenticationService.setUserDetails($rootScope.USERCOOKIE.loggedUser.userDetails);
             }
         })();
 

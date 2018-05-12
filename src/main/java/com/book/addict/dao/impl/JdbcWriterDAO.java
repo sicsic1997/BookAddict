@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -39,6 +41,24 @@ public class JdbcWriterDAO implements WriterDAO {
         }
 
         return Optional.ofNullable(writer);
+    }
+
+    @Override
+    public List<String> getAllWritersDe() {
+        String sqlSelect = "" +
+                "SELECT" +
+                "   DE_WRITER " +
+                "FROM BA_WRITERS";
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        return jdbcTemplate.execute(sqlSelect, namedParameters, preparedStatement -> {
+            ResultSet rs = preparedStatement.executeQuery();
+            List<String> results = new ArrayList<>();
+            while(rs.next()) {
+                String writerName = rs.getString("DE_WRITER");
+                results.add(writerName);
+            }
+            return results;
+        });
     }
 
     class PublisherDTOMapper implements RowMapper<WriterDTO> {

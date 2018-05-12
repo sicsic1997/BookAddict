@@ -22,6 +22,13 @@ public class BookDashboardController {
     BookService bookService;
 
     @RequestMapping(
+            value = "getAllEntriesForTextFilter",
+            method = RequestMethod.GET)
+    public ResponseEntity<Object> getAllEntriesForTextFilter() {
+        return new ResponseEntity<Object>(bookService.getAllEntriesForFilter(), HttpStatus.OK);
+    }
+
+    @RequestMapping(
             value = "filter",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)

@@ -21,13 +21,21 @@
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.6.9",
     "angular-animate": "^1.6.9",
+    "angular-aria": "^1.6.10",
     "angular-cookies": "^1.6.9",
+    "angular-material": "^1.1.9",
+    "angular-messages": "^1.6.10",
+    "angular-sanitize": "^1.6.10",
+    "angularjs-slider": "^6.5.1",
     "bootstrap": "^4.0.0",
     "grunt": "^1.0.2",
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
     "http-server": "^0.11.1",
-    "load-grunt-tasks": "^3.5.2"
+    "jquery": "^3.3.1",
+    "load-grunt-tasks": "^3.5.2",
+    "ui-bootstrap4": "^3.0.3",
+    "ui-select": "^0.19.8"
   }
 }

@@ -33,7 +33,7 @@ public class JdbcCategoryDAO implements CategoryDAO{
             while(rs.next()) {
                 CategoryDTO categoryDTO = new CategoryDTO();
                 categoryDTO.setIdCategory(rs.getInt("ID_CATEGORY"));
-                categoryDTO.setDeCategory(rs.getString("DE_CATEGORY"));
+                categoryDTO.setDescription(rs.getString("DE_CATEGORY"));
                 results.add(categoryDTO);
             }
             return results;
@@ -63,7 +63,7 @@ public class JdbcCategoryDAO implements CategoryDAO{
             while(rs.next()) {
                 CategoryDTO categoryDTO = new CategoryDTO();
                 categoryDTO.setIdCategory(rs.getInt("ID_CATEGORY"));
-                categoryDTO.setDeCategory(rs.getString("DE_CATEGORY"));
+                categoryDTO.setDescription(rs.getString("DE_CATEGORY"));
                 results.add(categoryDTO);
             }
             return results;
