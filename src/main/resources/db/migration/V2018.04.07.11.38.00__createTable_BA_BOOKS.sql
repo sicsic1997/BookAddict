@@ -31,7 +31,7 @@ INSERT INTO BA_BOOKS VALUES
         60,
         3,
         1,
-        'stevaJobs.jpg'
+        '1.jpg'
     ),
     (
         2,
@@ -41,5 +41,5 @@ INSERT INTO BA_BOOKS VALUES
         45,
         4,
         2,
-        'robotsInNeverland.jpg'
+        '2.jpg'
     );
