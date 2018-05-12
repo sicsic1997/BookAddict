@@ -1,6 +1,7 @@
 package com.book.addict.dao.impl;
 
 import com.book.addict.dao.BookDAO;
+import com.book.addict.dao.CategoryDAO;
 import com.book.addict.domain.BookDashboardFilter;
 import com.book.addict.dto.BookDTO;
 import com.book.addict.dto.CategoryDTO;
@@ -25,6 +26,9 @@ public class JdbcBookDAO implements BookDAO {
 
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
+
+    @Autowired
+    CategoryDAO categoryDAO;
 
     @Override
     public Optional<BookDTO> getBookById(int idBook) {
@@ -113,6 +117,9 @@ public class JdbcBookDAO implements BookDAO {
         namedParameters.addValue("maxPrice", filter.getMaxPrice());
 
         List<Integer> categoriesIds = new ArrayList<>();
+        if(filter.getCategoryDTOList().isEmpty()) {
+            filter.setCategoryDTOList(categoryDAO.getAllCategories());
+        }
         for (CategoryDTO category:filter.getCategoryDTOList()) {
             categoriesIds.add(category.getIdCategory());
         }
