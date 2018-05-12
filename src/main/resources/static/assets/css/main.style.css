@@ -446,7 +446,6 @@ html, body {
 
 .all-books.row {
     flex-grow: 3;
-    justify-content: center;
 }
 
 .book {
@@ -534,6 +533,33 @@ html, body {
 
 .more-icon i::selection {
     background-color: transparent;
+}
+
+.no-books {
+    justify-content: center;
+    width: 100%;
+    color: #c5c5c5;
+    font-family: "Montserrat Light", sans-serif;
+}
+
+.no-books h1 {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    color: #949494;
+    font-weight: 600;
+}
+
+.no-books h1 i {
+    font-size: 1.3rem;
+}
+
+.no-books h1 i, .no-books h1 span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.no-books h2 {
+    font-size: 1rem;
 }
 
 @media (min-width: 768px) {

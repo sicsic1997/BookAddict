@@ -34,9 +34,11 @@
                        placeholder="Search by book or author name"
                        class="form-control"
                        ng-model="DashCtrl.typheadSelection"
+                       ng-change="DashCtrl.getTypeheadOptions()"
                        typeahead-on-select="DashCtrl.typeheadOnSelect($item, $model)"
                        typeahead-no-results="noResults"
-                       uib-typeahead="entity.name for entity in DashCtrl.typheadOptions | filter:$viewValue | limitTo:8">
+                       typeahead-focus-on-select="false"
+                       uib-typeahead="entity as entity.text for entity in DashCtrl.typheadOptions | filter:$viewValue | limitTo:8">
             </div>
         </div>
         <div class="row mx-0 mt-2 pl-5 books-view">
@@ -65,15 +67,24 @@
                         <h1 class="mb-0">ALL BOOKS</h1>
                     </div>
                     <div class="separator my-2"></div>
-                    <div class="all-books row pl-3 pt-3">
-                        <div class="col-md book mb-4" ng-repeat="book in DashCtrl.books">
+                    <div class="all-books row px-3 pt-3">
+                        <div ng-hide="DashCtrl.books.length" class="row no-books pt-5">
+                            <div class="col-md-12 text-center">
+                                <h1>
+                                    <i class="material-icons">search</i>
+                                    <span>No results</span>
+                                </h1>
+                                <h2>Please refine your search criteria.</h2>
+                            </div>
+                        </div>
+                        <div ng-show="DashCtrl.books.length" class="col-md book mb-4" ng-repeat="book in DashCtrl.books">
                             <div class="book-image">
-                                <img src="https://d2118lkw40i39g.cloudfront.net/wp-content/uploads/2015/10/the-alchemist-632x1024.jpg"/>
+                                <img ng-show="book.imgName" src="assets/images/{{book.imgName}}"/>
                             </div>
                             <div class="row mx-0">
                                 <div class="book-details py-2">
-                                    <h1>{{book.title}}</h1>
-                                    <h2>{{book.author}}</h2>
+                                    <h1 title="{{book.bookName}}">{{book.bookName}}</h1>
+                                    <h2>{{book.writer.deWriter}}</h2>
                                 </div>
                                 <div class="more-icon">
                                     <i class="material-icons" ng-hide="book.isSelected" ng-click="DashCtrl.toggleBookSelection(book)">check_circle</i>

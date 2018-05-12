@@ -36,26 +36,13 @@
         vm.booksLoadingStatus = false;
 
         vm.categories = [];
-
-        vm.typheadOptions = [
-            {name: "Absalom, Absalom!", type: 'Book'},
-            {name: "An Evil Cradling", type: 'Book'},
-            {name: "Far From the Madding Crowd", type: 'Book'},
-            {name: "In Death Ground", type: 'Book'},
-            {name: "The Little Foxes", type: 'Book'},
-            {name: "Mother Night", type: 'Book'},
-            {name: "Of Human Bondage", type: 'Book'},
-            {name: "A Scanner Darkly", type: 'Book'},
-            {name: "Thrones, Dominations", type: 'Book'},
-            {name: "The Wealth of Nations", type: 'Book'},
-            {name: "The Yellow Meads of Asphodel", type: 'Book'}
-        ];
+        vm.typheadOptions = [];
+        vm.typheadSelection = '';
 
         vm.orderOptions = [
-            {id: 0, description: 'Newest Arrivals'},
-            {id: 1,description: 'Relevance'},
-            {id: 2,description: 'Price Low to High'},
-            {id: 3,description: 'Price High to Low'}
+            {id: 'ALPHABETICAL', description: 'Alphabetical Order'},
+            {id: 'PRICE_LOW_TO_HIGH', description: 'Price Low to High'},
+            {id: 'PRICE_HIGH_TO_LOW', description: 'Price High to Low'}
         ];
 
         vm.books = [
@@ -80,18 +67,17 @@
         vm.sortBooks = sortBooks;
         vm.toggleCheckbox = toggleCheckbox;
         vm.toggleBookSelection = toggleBookSelection;
+        vm.getTypeheadOptions = getTypeheadOptions;
 
         //////////
 
         _initCtrl();
 
         function typeheadOnSelect($item, $model) {
-            console.log(vm.typheadSelection.name);
             _loadBooks();
         }
 
         function sortBooks() {
-            console.log(vm.orderSelection);
             _loadBooks();
         }
 
@@ -110,7 +96,6 @@
 
         function toggleBookSelection(book) {
             book.isSelected = !book.isSelected;
-            console.log(vm.books);
         }
 
 
@@ -165,21 +150,35 @@
 
             data.minPrice = vm.priceSlider.minValue;
             data.maxPrice = vm.priceSlider.maxValue;
-            data.bookOrAuthorName = '';
+            data.bookOrAuthorName = vm.typheadSelection.text;
             data.categoryDTOList = _getSelectedCategories();
-            data.field = 'ALPHABETICAL';
+            data.field = vm.orderSelection.id;
 
             return data;
         }
 
         function _getSelectedCategories() {
-            var selectedCategories = vm.categories.map(function(category) {
-                if(category.isSelected) {
+            var selectedCategories = vm.categories.filter(function(category) {
+                if(category.isSelected === true) {
                     return category.idCategory;
                 }
             });
 
             return selectedCategories;
+        }
+
+        function getTypeheadOptions() {
+            if(vm.typheadSelection === '') {
+                _loadBooks();
+                return;
+            }
+            CoreApiService
+                .getTextFilterEntries(vm.typheadSelection)
+                .then(function(response) {
+                    vm.typheadOptions = response.data;
+                }, function() {
+                    console.log("failed to load options for text filter");
+                });
         }
     }
 

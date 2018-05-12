@@ -21,6 +21,9 @@
             },
             getBooksByFilter: function(data) {
                 return $http.post(baseUrl + 'bookDashboard/filter', data);
+            },
+            getTextFilterEntries: function() {
+                return $http.get(baseUrl + 'bookDashboard/getAllEntriesForTextFilter');
             }
         };
     }
