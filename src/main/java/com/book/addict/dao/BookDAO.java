@@ -2,6 +2,7 @@ package com.book.addict.dao;
 
 import com.book.addict.domain.BookDashboardFilter;
 import com.book.addict.dto.BookDTO;
+import com.book.addict.dto.BookDashboardTextFilter;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,5 +17,9 @@ public interface BookDAO {
     BigDecimal getMaxBookPrice();
 
     List<Integer> getBookIdsByFilter(BookDashboardFilter filter);
+
+    List<BookDashboardTextFilter> getAllBookDashboardFilter();
+
+    List<String> getAllBooksName();
 
 }

@@ -5,10 +5,7 @@ import com.book.addict.dao.CategoryDAO;
 import com.book.addict.dao.PublisherDAO;
 import com.book.addict.dao.WriterDAO;
 import com.book.addict.domain.BookDashboardFilter;
-import com.book.addict.dto.BookDTO;
-import com.book.addict.dto.CategoryDTO;
-import com.book.addict.dto.PublisherDTO;
-import com.book.addict.dto.WriterDTO;
+import com.book.addict.dto.*;
 import com.book.addict.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -106,5 +103,10 @@ public class BookServiceImpl implements BookService{
     @Override
     public BigDecimal getMaxBookPrice() {
         return bookDAO.getMaxBookPrice();
+    }
+
+    @Override
+    public List<BookDashboardTextFilter> getAllEntriesForFilter() {
+        return bookDAO.getAllBookDashboardFilter();
     }
 }

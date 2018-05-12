@@ -2,6 +2,7 @@ package com.book.addict.service;
 
 import com.book.addict.domain.BookDashboardFilter;
 import com.book.addict.dto.BookDTO;
+import com.book.addict.dto.BookDashboardTextFilter;
 import com.book.addict.dto.CategoryDTO;
 
 import java.math.BigDecimal;
@@ -16,5 +17,7 @@ public interface BookService {
     List<CategoryDTO> getAllCategories();
 
     BigDecimal getMaxBookPrice();
+
+    List<BookDashboardTextFilter> getAllEntriesForFilter();
 
 }
