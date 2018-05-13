@@ -136,3 +136,14 @@ Example of response:
       "type":"BOOK"
    }
 ]
+
+7. Save booking
+POST: http://localhost:8080/bookAddict/bookings/saveBooking?userId=1&description="This is my first booking"
+Body:
+{
+	"bookingItemDTOList": [
+		{"bookId":1, "quantity":3},
+		{"bookId":2, "quantity":5}
+	]
+}
+Returns HttpStatus.Ok: 200
