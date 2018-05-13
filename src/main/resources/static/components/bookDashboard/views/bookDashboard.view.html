@@ -7,12 +7,12 @@
             <div class="col-md-2">
                 <div class="order-dropdown">
                     <md-input-container class="md-block" flex-gt-sm="">
-                        <md-select ng-model="DashCtrl.orderSelection"
+                        <md-select ng-model="DashCtrl.bookSearchData.orderSelection"
                                    ng-change="DashCtrl.sortBooks()"
                                    placeholder="Newest Arrivals">
-                            <md-option ng-repeat="orderOption in DashCtrl.orderOptions"
+                            <md-option ng-repeat="orderOption in DashCtrl.bookSearchData.orderOptions"
                                        ng-value="orderOption"
-                                       ng-selected="DashCtrl.orderOptions.indexOf(orderOption) == 0">
+                                       ng-selected="DashCtrl.bookSearchData.orderOptions.indexOf(orderOption) == 0">
                                 {{orderOption.description}}
                             </md-option>
                         </md-select>
@@ -21,8 +21,8 @@
             </div>
             <div class="col-md-3">
                 <rzslider class="price-slider"
-                          rz-slider-model="DashCtrl.priceSlider.minValue"
-                          rz-slider-high="DashCtrl.priceSlider.maxValue"
+                          rz-slider-model="DashCtrl.bookSearchData.minPrice"
+                          rz-slider-high="DashCtrl.bookSearchData.maxPrice"
                           rz-slider-options="DashCtrl.priceSlider.options">
                 </rzslider>
             </div>
@@ -33,12 +33,12 @@
                 <input type="text"
                        placeholder="Search by book or author name"
                        class="form-control"
-                       ng-model="DashCtrl.typheadSelection"
+                       ng-model="DashCtrl.bookSearchData.typheadSelection"
                        ng-change="DashCtrl.getTypeheadOptions()"
                        typeahead-on-select="DashCtrl.typeheadOnSelect($item, $model)"
                        typeahead-no-results="noResults"
                        typeahead-focus-on-select="false"
-                       uib-typeahead="entity as entity.text for entity in DashCtrl.typheadOptions | filter:$viewValue | limitTo:8">
+                       uib-typeahead="entity as entity.text for entity in DashCtrl.bookSearchData.typheadOptions | filter:$viewValue | limitTo:8">
             </div>
         </div>
         <div class="row mx-0 mt-2 pl-5 books-view">
@@ -47,7 +47,7 @@
                     <h1 class="mb-0">CATEGORIES</h1>
                     <div class="separator my-2"></div>
                     <div class="row mx-0">
-                        <div class="col-md-12 my-2 pl-0" ng-repeat="category in DashCtrl.categories">
+                        <div class="col-md-12 my-2 pl-0" ng-repeat="category in DashCtrl.bookSearchData.categories">
                             <div class="cat-checkbox" ng-click="DashCtrl.toggleCheckbox(category)">
                                 <div ng-hide="category.isSelected">
 
@@ -68,7 +68,7 @@
                     </div>
                     <div class="separator my-2"></div>
                     <div class="all-books row px-3 pt-3">
-                        <div ng-hide="DashCtrl.books.length" class="row no-books pt-5">
+                        <div ng-hide="DashCtrl.books.length || DashCtrl.booksLoadingStatus" class="row no-books pt-5">
                             <div class="col-md-12 text-center">
                                 <h1>
                                     <i class="material-icons">search</i>
@@ -77,14 +77,23 @@
                                 <h2>Please refine your search criteria.</h2>
                             </div>
                         </div>
-                        <div ng-show="DashCtrl.books.length" class="col-md book mb-4" ng-repeat="book in DashCtrl.books">
+                        <div ng-show="DashCtrl.booksLoadingStatus" class="book-loader pt-5">
+                            <div class="lds-double-ring">
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div ng-show="DashCtrl.books.length && !DashCtrl.booksLoadingStatus" class="col-md book mb-4" ng-repeat="book in DashCtrl.books">
                             <div class="book-image">
-                                <img ng-show="book.imgName" src="assets/images/{{book.imgName}}"/>
+                                <img ng-show="book.imgName" ng-src="assets/images/{{book.imgName}}"/>
+                                <div ng-hide="book.imgName" class="no-image">
+                                    <i class="material-icons">camera_alt</i>
+                                </div>
                             </div>
                             <div class="row mx-0">
                                 <div class="book-details py-2">
                                     <h1 title="{{book.bookName}}">{{book.bookName}}</h1>
-                                    <h2>{{book.writer.deWriter}}</h2>
+                                    <h2 title="{{book.writer.deWriter}}">{{book.writer.deWriter}}</h2>
                                 </div>
                                 <div class="more-icon">
                                     <i class="material-icons" ng-hide="book.isSelected" ng-click="DashCtrl.toggleBookSelection(book)">check_circle</i>

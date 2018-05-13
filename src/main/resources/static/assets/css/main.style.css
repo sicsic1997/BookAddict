@@ -460,7 +460,7 @@ html, body {
 }
 
 .book .book-image {
-    background-color: #dddddd;
+    background-color: #e6e6e6;
     flex-grow: 2;
     position: relative;
 }
@@ -504,6 +504,9 @@ html, body {
     color: #99c446;
     font-weight: 600;
     letter-spacing: 0.02rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .more-icon {
@@ -560,6 +563,18 @@ html, body {
 
 .no-books h2 {
     font-size: 1rem;
+}
+
+.no-image {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-image i {
+    font-size: 4rem;
+    color: #d4d4d4;
 }
 
 @media (min-width: 768px) {

@@ -9,7 +9,8 @@
         'rzModule',
         'ui.bootstrap',
         'ngMaterial',
-        'ngMessages'
+        'ngMessages',
+        'ngAnimate'
     ]);
 
 })();
