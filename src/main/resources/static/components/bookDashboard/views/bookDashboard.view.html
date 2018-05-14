@@ -83,21 +83,23 @@
                                 <div></div>
                             </div>
                         </div>
-                        <div ng-show="DashCtrl.books.length && !DashCtrl.booksLoadingStatus" class="col-md book mb-4" ng-repeat="book in DashCtrl.books">
-                            <div class="book-image">
-                                <img ng-show="book.imgName" ng-src="assets/images/{{book.imgName}}"/>
-                                <div ng-hide="book.imgName" class="no-image">
-                                    <i class="material-icons">camera_alt</i>
+                        <div class="row mx-0" ng-show="DashCtrl.books.length && !DashCtrl.booksLoadingStatus">
+                            <div class="book mb-4" ng-repeat="book in DashCtrl.books" ng-click="DashCtrl.viewBook(book)">
+                                <div class="book-image">
+                                    <img ng-show="book.imgName" ng-src="assets/images/{{book.imgName}}"/>
+                                    <div ng-hide="book.imgName" class="no-image">
+                                        <i class="material-icons">camera_alt</i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mx-0">
-                                <div class="book-details py-2">
-                                    <h1 title="{{book.bookName}}">{{book.bookName}}</h1>
-                                    <h2 title="{{book.writer.deWriter}}">{{book.writer.deWriter}}</h2>
-                                </div>
-                                <div class="more-icon">
-                                    <i class="material-icons" ng-hide="book.isSelected" ng-click="DashCtrl.toggleBookSelection(book)">check_circle</i>
-                                    <i class="material-icons" ng-show="book.isSelected" ng-click="DashCtrl.toggleBookSelection(book)">check_circle</i>
+                                <div class="row mx-0">
+                                    <div class="book-details py-2">
+                                        <h1 title="{{book.bookName}}">{{book.bookName}}</h1>
+                                        <h2 title="{{book.writer.deWriter}}">{{book.writer.deWriter}}</h2>
+                                    </div>
+                                    <div class="more-icon">
+                                        <i class="material-icons" ng-hide="book.isSelected" ng-click="DashCtrl.toggleBookSelection(book)">check_circle</i>
+                                        <i class="material-icons" ng-show="book.isSelected" ng-click="DashCtrl.toggleBookSelection(book)">check_circle</i>
+                                    </div>
                                 </div>
                             </div>
                         </div>

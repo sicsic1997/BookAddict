@@ -1,0 +1,14 @@
+<md-dialog>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div class="row">
+                <div class="book-image">
+                    <img ng-show="dialogController.book.imgName" ng-src="assets/images/{{dialogController.book.imgName}}"/>
+                    <div ng-hide="dialogController.book.imgName" class="no-image">
+                        <i class="material-icons">camera_alt</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+</md-dialog>

@@ -452,7 +452,11 @@ html, body {
     display: flex;
     flex-direction: column;
     min-height: 350px;
+    width: 20%;
     min-width: 200px;
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+    cursor: pointer;
 }
 
 .book > div {
@@ -579,6 +583,6 @@ html, body {
 
 @media (min-width: 768px) {
     .book {
-        max-width: 250px;
+        max-width: 200px;
     }
 }

@@ -9,12 +9,14 @@
     Controller.$inject = [
         '$scope',
         '$state',
+        '$mdDialog',
         'CoreApiService',
         'BookSearchData'
     ];
 
     function Controller($scope,
                         $state,
+                        $mdDialog,
                         CoreApiService,
                         BookSearchData) {
 
@@ -49,6 +51,7 @@
         vm.toggleCheckbox = toggleCheckbox;
         vm.toggleBookSelection = toggleBookSelection;
         vm.getTypeheadOptions = getTypeheadOptions;
+        vm.viewBook = viewBook;
 
         //////////
 
@@ -154,6 +157,21 @@
                 }, function() {
                     console.log("failed to load options for text filter");
                 });
+        }
+
+        function viewBook(book) {
+            $mdDialog.show({
+                controller: 'BookDialogController as dialogController',
+                templateUrl: 'components/bookDashboard/views/bookDialog.view.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: true,
+                customFullscreen: true,
+                locals: {book: book}
+            }).then(function() {
+
+            }, function() {
+
+            });
         }
     }
 
