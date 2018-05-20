@@ -19,5 +19,8 @@ DELETE FROM BA_CATEGORIES;
 INSERT INTO BA_CATEGORIES VALUES
     (1, 'Personal Development'),
     (2, 'Fiction'),
-    (3, 'SF'),
-    (4, 'Biographies');
+    (3, 'Adventure'),
+    (4, 'Biographies'),
+    (5, 'Romance'),
+    (6, 'Art'),
+    (7, 'Cooking');
