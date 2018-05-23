@@ -45,13 +45,7 @@ public class BookServiceImpl implements BookService{
             }
         }
 
-        if(bookDashboardFilter.getBookOrAuthorName() != null && !Objects.equals(bookDashboardFilter.getBookOrAuthorName(), "")) {
-            bookList = bookList
-                            .stream()
-                            .filter(book -> book.getWriter().getDeWriter().toLowerCase().contains(bookDashboardFilter.getBookOrAuthorName().toLowerCase()) ||
-                                            book.getBookName().toLowerCase().contains(bookDashboardFilter.getBookOrAuthorName().toLowerCase()))
-                            .collect(Collectors.toList());
-        }
+        bookList = getFilteredResults(bookList, bookDashboardFilter);
 
         Comparator<BookDTO> comparator = null;
         switch (bookDashboardFilter.getField()) {
@@ -66,6 +60,20 @@ public class BookServiceImpl implements BookService{
                 break;
         }
         bookList = bookList.stream().sorted(comparator).collect(Collectors.toList());
+
+        return bookList;
+
+    }
+
+    public List<BookDTO> getFilteredResults(List<BookDTO> bookList, BookDashboardFilter bookDashboardFilter) {
+
+        if(bookDashboardFilter.getBookOrAuthorName() != null && !Objects.equals(bookDashboardFilter.getBookOrAuthorName(), "")) {
+            bookList = bookList
+                    .stream()
+                    .filter(book -> book.getWriter().getDeWriter().toLowerCase().contains(bookDashboardFilter.getBookOrAuthorName().toLowerCase()) ||
+                            book.getBookName().toLowerCase().contains(bookDashboardFilter.getBookOrAuthorName().toLowerCase()))
+                    .collect(Collectors.toList());
+        }
 
         return bookList;
 

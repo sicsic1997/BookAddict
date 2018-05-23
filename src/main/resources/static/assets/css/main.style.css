@@ -452,7 +452,11 @@ html, body {
     display: flex;
     flex-direction: column;
     min-height: 350px;
+    width: 20%;
     min-width: 200px;
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+    cursor: pointer;
 }
 
 .book > div {
@@ -460,7 +464,7 @@ html, body {
 }
 
 .book .book-image {
-    background-color: #dddddd;
+    background-color: #e6e6e6;
     flex-grow: 2;
     position: relative;
 }
@@ -499,11 +503,14 @@ html, body {
     cursor: pointer;
 }
 
-.book-details h2 {
+.book-details h2.emphasize {
     font-size: 0.8rem;
     color: #99c446;
     font-weight: 600;
     letter-spacing: 0.02rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .more-icon {
@@ -562,8 +569,96 @@ html, body {
     font-size: 1rem;
 }
 
+.no-image {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-image i {
+    font-size: 4rem;
+    color: #d4d4d4;
+}
+
 @media (min-width: 768px) {
     .book {
-        max-width: 250px;
+        max-width: 200px;
     }
+}
+
+.preview-book {
+    height: 350px;
+    width: 800px;
+    position: relative;
+}
+
+.preview-book .book-image {
+    height: 100%;
+    max-width: 250px;
+    position: relative;
+}
+
+.preview-book .book-image img{
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.preview-book .book-details {
+    flex: 1 0 50%;
+    justify-content: normal;
+    display: block;
+}
+
+.preview-book .book-details h1{
+    cursor: auto;
+    font-size: 1.2rem;
+    color: #535353;
+    white-space: normal;
+}
+
+.book-details .subtitle {
+    font-size: 0.8rem;
+    color: #6f6f6f;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.05rem;
+}
+
+.book-details p {
+    color: #6f6f6f;
+    font-size: 0.8rem;
+    text-align: justify;
+}
+
+.close-button {
+    position: absolute;
+    top: -18px;
+    right: -3px;
+    cursor: pointer;
+}
+
+.close-button i {
+    font-size: 1.2rem;
+    color: #535353;
+}
+
+.close-button:focus {
+    outline:0;
+}
+
+.preview-book .book-details .book-categories {
+    list-style-type: none;
+}
+
+.book-categories li {
+    font-size: 0.75rem;
+    color: #99c446;
+    font-weight: 600;
+    border: 0.1rem solid #99c446;
+    border-radius: 0.15rem;
+    padding: 2px 6px;
+    display: inline-block;
+    text-transform: uppercase;
 }

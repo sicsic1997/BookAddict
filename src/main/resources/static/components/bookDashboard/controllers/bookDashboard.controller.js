@@ -9,18 +9,22 @@
     Controller.$inject = [
         '$scope',
         '$state',
-        'CoreApiService'
+        '$mdDialog',
+        'CoreApiService',
+        'BookSearchData'
     ];
 
     function Controller($scope,
                         $state,
-                        CoreApiService) {
+                        $mdDialog,
+                        CoreApiService,
+                        BookSearchData) {
 
         var vm = this;
 
+        vm.bookSearchData = BookSearchData;
+
         vm.priceSlider = {
-            minValue: 0,
-            maxValue: 0,
             options: {
                 floor: 0,
                 ceil: 150,
@@ -33,34 +37,13 @@
 
         vm.categoryLoadingStatus = false;
         vm.priceLoadingStatus = false;
-        vm.booksLoadingStatus = false;
+        vm.booksLoadingStatus = true;
 
-        vm.categories = [];
-        vm.typheadOptions = [];
-        vm.typheadSelection = '';
-
-        vm.orderOptions = [
+        vm.books = [];
+        vm.bookSearchData.orderOptions = [
             {id: 'ALPHABETICAL', description: 'Alphabetical Order'},
             {id: 'PRICE_LOW_TO_HIGH', description: 'Price Low to High'},
             {id: 'PRICE_HIGH_TO_LOW', description: 'Price High to Low'}
-        ];
-
-        vm.books = [
-            {id: 1, category: ['Adventure', 'Fantasy'], author: 'Paulo Coelho', title: 'The Alchemist', isSelected: false, backgroundUrl: ""},
-            {id: 2, category: ['Crime', 'Drama', 'Mystery'], author: 'Agatha Christie', title: 'Murder on the Orient Express', isSelected: false, backgroundUrl: ""},
-            {id: 3, category: ['Adventure', 'Fantasy'], author: 'J. R. R. Tolkien', title: 'The Lord of the Rings', isSelected: false, backgroundUrl: ""},
-            {id: 4, category: ['Crime', 'Mystery'], author: 'Michael Connelly', title: 'The Lincoln Lawyer', isSelected: false, backgroundUrl: ""},
-            {id: 5, category: ['Fantasy', 'Thriller'], author: 'Joakim Zander', title: 'The Brother', isSelected: false, backgroundUrl: ""},
-            {id: 6, category: ['Adventure', 'Fantasy'], author: 'Paulo Coelho', title: 'The Alchemist', isSelected: false, backgroundUrl: ""},
-            {id: 7, category: ['Crime', 'Drama', 'Mystery'], author: 'Agatha Christie', title: 'Murder on the Orient Express', isSelected: false, backgroundUrl: ""},
-            {id: 8, category: ['Adventure', 'Fantasy'], author: 'J. R. R. Tolkien', title: 'The Lord of the Rings', isSelected: false, backgroundUrl: ""},
-            {id: 9, category: ['Crime', 'Mystery'], author: 'Michael Connelly', title: 'The Lincoln Lawyer', isSelected: false, backgroundUrl: ""},
-            {id: 10, category: ['Fantasy', 'Thriller'], author: 'Joakim Zander', title: 'The Brother', isSelected: false, backgroundUrl: ""},
-            {id: 11, category: ['Adventure', 'Fantasy'], author: 'Paulo Coelho', title: 'The Alchemist', isSelected: false, backgroundUrl: ""},
-            {id: 12, category: ['Crime', 'Drama', 'Mystery'], author: 'Agatha Christie', title: 'Murder on the Orient Express', isSelected: false, backgroundUrl: ""},
-            {id: 13, category: ['Adventure', 'Fantasy'], author: 'J. R. R. Tolkien', title: 'The Lord of the Rings', isSelected: false, backgroundUrl: ""},
-            {id: 14, category: ['Crime', 'Mystery'], author: 'Michael Connelly', title: 'The Lincoln Lawyer', isSelected: false, backgroundUrl: ""},
-            {id: 15, category: ['Fantasy', 'Thriller'], author: 'Joakim Zander', title: 'The Brother', isSelected: false, backgroundUrl: ""}
         ];
 
         vm.typeheadOnSelect = typeheadOnSelect;
@@ -68,6 +51,7 @@
         vm.toggleCheckbox = toggleCheckbox;
         vm.toggleBookSelection = toggleBookSelection;
         vm.getTypeheadOptions = getTypeheadOptions;
+        vm.viewBook = viewBook;
 
         //////////
 
@@ -87,7 +71,7 @@
         }
 
         function _initCtrl() {
-            vm.orderSelection = vm.orderOptions[0];
+            vm.bookSearchData.orderSelection = vm.bookSearchData.orderOptions[0];
 
 
             _loadCategories();
@@ -105,7 +89,7 @@
             CoreApiService
                 .getCategories()
                 .then(function(response) {
-                    vm.categories = response.data;
+                    vm.bookSearchData.categories = response.data;
                     vm.categoryLoadingStatus = false;
                     _loadBooks();
                 }, function() {
@@ -121,7 +105,7 @@
                 .getMaxPrice()
                 .then(function(response) {
                     vm.priceSlider.options.ceil = response.data;
-                    vm.priceSlider.maxValue = vm.priceSlider.options.ceil;
+                    vm.bookSearchData.maxPrice = vm.priceSlider.options.ceil;
                     vm.priceLoadingStatus = false;
                     _loadBooks();
                 }, function() {
@@ -146,19 +130,13 @@
         }
 
         function _getSelectedFilters() {
-            var data = {};
-
-            data.minPrice = vm.priceSlider.minValue;
-            data.maxPrice = vm.priceSlider.maxValue;
-            data.bookOrAuthorName = vm.typheadSelection.text;
-            data.categoryDTOList = _getSelectedCategories();
-            data.field = vm.orderSelection.id;
-
+            var data = vm.bookSearchData.getDTO();
+            data.categoryDTOList = _getSelectedCategories(data.categoryDTOList);
             return data;
         }
 
-        function _getSelectedCategories() {
-            var selectedCategories = vm.categories.filter(function(category) {
+        function _getSelectedCategories(categories) {
+            var selectedCategories = categories.filter(function(category) {
                 if(category.isSelected === true) {
                     return category.idCategory;
                 }
@@ -168,17 +146,32 @@
         }
 
         function getTypeheadOptions() {
-            if(vm.typheadSelection === '') {
+            if(vm.bookSearchData.typheadSelection === '') {
                 _loadBooks();
                 return;
             }
             CoreApiService
-                .getTextFilterEntries(vm.typheadSelection)
+                .getTextFilterEntries(vm.bookSearchData.typheadSelection)
                 .then(function(response) {
                     vm.typheadOptions = response.data;
                 }, function() {
                     console.log("failed to load options for text filter");
                 });
+        }
+
+        function viewBook(book) {
+            $mdDialog.show({
+                controller: 'BookDialogController as dialogController',
+                templateUrl: 'components/bookDashboard/views/bookDialog.view.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: true,
+                customFullscreen: true,
+                locals: {book: book}
+            }).then(function() {
+
+            }, function() {
+
+            });
         }
     }
 
