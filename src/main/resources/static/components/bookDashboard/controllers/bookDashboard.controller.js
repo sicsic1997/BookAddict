@@ -31,7 +31,7 @@
                 translate: function(value) {
                     return value + ' RON' + '\n';
                 },
-                onChange: _loadBooks
+                onEnd: _loadBooks
             }
         };
 
@@ -78,8 +78,9 @@
             _loadMaxPrice();
         }
 
-        function toggleBookSelection(book) {
+        function toggleBookSelection(book, event) {
             book.isSelected = !book.isSelected;
+            event.stopPropagation();
         }
 
 
