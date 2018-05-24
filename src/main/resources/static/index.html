@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bookAddict" ng-controller="MainController">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>bookaddict</title>
+        <link rel="shortcut icon" type="image/png" href="./assets/images/logo.png"/>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="bookaddict online application" />
+
+        <!--EXTERNAL STYLES-->
+        <link type="text/css" rel="stylesheet" href="./styles/bootstrap.min.css"/>
+        <link type="text/css" rel="stylesheet" href="./styles/angular-material.min.css"/>
+        <link type="text/css" rel="stylesheet" href="./styles/rzslider.min.css"/>
+
+        <!--EXTERNAL FONTS AND ASSETS-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
+
+        <!--INTERNAL STYLES-->
+        <link type="text/css" rel="stylesheet" href="./assets/css/main.style.css"/>
+        <link type="text/css" rel="stylesheet" href="./assets/css/slider.style.css"/>
+        <link type="text/css" rel="stylesheet" href="./assets/css/typhead.style.css"/>
+        <link type="text/css" rel="stylesheet" href="./assets/css/orderDropdown.style.css"/>
+        <link type="text/css" rel="stylesheet" href="./assets/css/bookLoader.style.css"/>
+
+    </head>
+
+    <body>
+
+        <div class="container-fluid app-container">
+            <div ui-view></div>
+        </div>
+
+
+        <!--EXTERNAL SCRIPTS-->
+        <script type="text/javascript" src="./scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="./scripts/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="./scripts/angular.min.js"></script>
+        <script type="text/javascript" src="./scripts/angular-cookies.min.js"></script>
+        <script type="text/javascript" src="./scripts/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="./scripts/angular-animate.min.js"></script>
+        <script type="text/javascript" src="./scripts/angular-aria.min.js"></script>
+        <script type="text/javascript" src="./scripts/angular-messages.min.js"></script>
+        <script type="text/javascript" src="./scripts/angular-material.min.js"></script>
+
+        <script type="text/javascript" src="./scripts/rzslider.min.js"></script>
+        <script type="text/javascript" src="./scripts/ui-bootstrap.js"></script>
+        <script type="text/javascript" src="./scripts/ui-bootstrap-tpls.js"></script>
+
+
+        <!--INTERNAL SCRIPTS-->
+        <script type="text/javascript" src="./app.module.js"></script>
+        <script type="text/javascript" src="./app.routes.js"></script>
+
+        <script type="text/javascript" src="./shared/main.controller.js"></script>
+        <script type="text/javascript" src="./shared/services/AuthenticationService.js"></script>
+        <script type="text/javascript" src="./shared/services/BaseEncodingService.js"></script>
+        <script type="text/javascript" src="./shared/services/CoreApiService.js"></script>
+
+        <script type="text/javascript" src="./shared/dataHolders/bookSearch.data.js"></script>
+        <script type="text/javascript" src="./shared/dataHolders/book.data.js"></script>
+
+        <script type="text/javascript" src="./shared/components/header/header.controller.js"></script>
+
+        <script type="text/javascript" src="./components/login/controllers/login.controller.js"></script>
+
+        <script type="text/javascript" src="./components/bookDashboard/bookDashboard.module.js"></script>
+        <script type="text/javascript" src="./components/bookDashboard/bookDashboard.routes.js"></script>
+        <script type="text/javascript" src="./components/bookDashboard/controllers/bookDashboard.controller.js"></script>
+        <script type="text/javascript" src="./components/bookDashboard/controllers/bookDialog.controller.js"></script>
+
+        <script type="text/javascript" src="./components/cart/cart.module.js"></script>
+        <script type="text/javascript" src="./components/cart/cart.routes.js"></script>
+        <script type="text/javascript" src="./components/cart/controllers/cart.controller.js"></script>
+
+    </body>
+
+</html>

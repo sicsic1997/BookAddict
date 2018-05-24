@@ -1,0 +1,46 @@
+<md-dialog>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div class="row preview-book">
+                <div class="book-image col-md-6 ml-2">
+                    <img ng-show="dialogController.book.imgName" ng-src="assets/images/{{dialogController.book.imgName}}"/>
+                    <div ng-hide="dialogController.book.imgName" class="no-image">
+                        <i class="material-icons">camera_alt</i>
+                    </div>
+                </div>
+                <div class="book-details col ml-4 mr-3">
+                    <div class="row">
+                        <h1 class="mb-0">{{dialogController.book.bookName}}</h1>
+                    </div>
+                    <div class="row mt-1">
+                        <h2 class="emphasize">by {{dialogController.book.writer.deWriter}}</h2>
+                    </div>
+                    <div class="row mt-3">
+                        <h2 class="subtitle">Summary :</h2>
+                        <p>{{dialogController.book.deBook}}</p>
+                    </div>
+                    <div class="row">
+                        <h2 class="subtitle">Price :</h2>
+                        <p class="pl-1">{{dialogController.book.price}} RON</p>
+                    </div>
+                    <div class="row">
+                        <h2 class="subtitle">Publisher :</h2>
+                        <p class="pl-1">{{dialogController.book.publisher.dePublisher}}</p>
+                    </div>
+                    <div class="row">
+                        <ul class="book-categories pl-0">
+                            <li class="mr-2" ng-repeat="category in dialogController.book.categories">
+                                {{category.description}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="close-button" ng-click="dialogController.close()">
+                    <i class="material-icons">
+                        clear
+                    </i>
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+</md-dialog>

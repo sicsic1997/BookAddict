@@ -1,0 +1,37 @@
+<div class="container-fluid book-addict-container">
+    <div ng-controller="sharedHeaderController as headerController"
+         ng-include="'shared/components/header/header.view.html'"></div>
+
+    <div ng-if="CartCtrl.bookData.selectedBooks.length" class="dashboard-container my-cart pt-4">
+        <div class="row mx-0 mb-3 px-2 cart-book" ng-repeat="selectedBook in CartCtrl.bookData.selectedBooks">
+            <div class="col">
+                <h1>{{selectedBook.book.bookName}}</h1>
+            </div>
+            <div class="col">
+                <h1>{{selectedBook.book.writer.deWriter}}</h1>
+            </div>
+            <div class="col">
+                <h1>{{selectedBook.book.price}} RON </h1>
+            </div>
+            <div class="col quantity-selector">
+                <input type="number" min="0" ng-model="selectedBook.selectedQuantity"></h1>
+            </div>
+        </div>
+
+        <div ng-if="CartCtrl.bookData.selectedBooks.length" class="row">
+            <div class="button btn btn-lg" ng-click="CartCtrl.makeBooking()">Submit</div>
+        </div>
+    </div>
+
+    <div ng-if="!CartCtrl.bookData.selectedBooks.length" class="row no-books pt-5">
+        <div class="col-md-5 text-center">
+            <h1 class="mb-3">
+                <i class="material-icons">remove_shopping_cart</i>
+                <span>No books here</span>
+            </h1>
+            <h2>To become a book addict, first you need to add books to your cart.</h2>
+            <h2>Go back to our <span class="emphasize" ng-click="CartCtrl.goToDashboard()">dashboard</span>.</h2>
+        </div>
+    </div>
+
+</div>

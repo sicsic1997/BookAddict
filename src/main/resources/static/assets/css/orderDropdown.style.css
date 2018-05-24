@@ -1,0 +1,27 @@
+.order-dropdown md-select:not([disabled]):focus .md-select-value {
+    border-bottom-color: #e1e1e1;
+}
+
+.order-dropdown .md-select-value {
+    padding-top: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #e1e1e1;
+    transition: all .1s ease-in;
+    color: #212529;
+}
+
+.order-dropdown .md-select-value:hover {
+    border-bottom-color: #99c446;
+    transition: all .1s ease-in;
+}
+
+md-select-menu md-content md-option[selected] {
+    color: #99c446;
+}
+
+md-select-menu md-content md-option[selected]:focus {
+    color: #99c446;
+}

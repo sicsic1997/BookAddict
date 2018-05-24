@@ -1,0 +1,44 @@
+<div class="container-fluid login-container">
+    <div class="row col-md-7 login-modal">
+        <div class="col-7">
+            <div class="left">
+                <div class="info mb-4 py-2">
+                    <h1>BE</h1>
+                </div>
+                <div class="info mb-4 py-2">
+                    <h1>BOLD</h1>
+                </div>
+                <div class="info mb-4 py-2">
+                    <h1>READ</h1>
+                </div>
+                <div class="info mb-4 py-2">
+                    <h1>BOOKS</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="right row">
+                <div class="brand">
+                    <img src="assets/images/logo.png"/>
+                    <h1 class="text">book<span>addict</span></h1>
+                </div>
+                <div class="login-form">
+                    <input ng-if="!LoginController.isLogin" ng-model="LoginController.firstName" type="text" class="login-input mb-4 pb-1" id="firstname" autocomplete="off" spellcheck="false" aria-describedby="firstname" placeholder="firstname">
+                    <input ng-if="!LoginController.isLogin" ng-model="LoginController.lastName" type="text" class="login-input mb-4 pb-1" id="lastname" autocomplete="off" spellcheck="false" aria-describedby="lastname" placeholder="lastname">
+                    <input ng-model="LoginController.userName" type="text" class="login-input mb-4 pb-1" id="username" autocomplete="off" spellcheck="false" aria-describedby="username" placeholder="username">
+                    <input ng-model="LoginController.password" type="password" class="login-input pb-1" id="password" autocomplete="off" spellcheck="false" aria-describedby="password" placeholder="password">
+                </div>
+                <div class="info-1">
+                    <button ng-click="LoginController.isLogin ? LoginController.login() : LoginController.register()" class="mb-0">{{LoginController.actionButtonText}}<i class="material-icons ml-2">send</i></button>
+                </div>
+                <div class="info-2">
+                    <div class="ml-3 mb-2" ng-show="!LoginController.isValidData">
+                        <i class="material-icons">error_outline</i>
+                        <h5 class="ml-2 mb-0">{{LoginController.actionTextError}}</h5>
+                    </div>
+                    <h5 class="mr-3 mt-3">or {{LoginController.toggleInfoText}} <span ng-click="LoginController.toggleAction()">here</span></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

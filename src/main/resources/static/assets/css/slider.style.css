@@ -1,0 +1,38 @@
+.price-slider.rzslider .rz-pointer {
+    top: -3px;
+    width: 10px;
+    height: 10px;
+    background: #99c446;
+    line-height: 28px;
+    border-radius: 50%;
+    font-size: 11px;
+}
+
+.price-slider.rzslider .rz-pointer:focus {
+    outline: 0;
+}
+
+.price-slider.rzslider .rz-pointer::after {
+    display: none;
+}
+
+.price-slider.rzslider .rz-tick {
+    margin-left: 0;
+}
+
+.price-slider.rzslider .rz-bar {
+    background: #e1e1e1;
+}
+
+.price-slider.rzslider .rz-selection {
+    background: #99c446;
+}
+
+.price-slider.rzslider .rz-bubble {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 11px;
+    top: -20px;
+    padding: 0;
+    margin-left: 0;
+}
+
