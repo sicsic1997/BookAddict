@@ -11,18 +11,21 @@
         '$state',
         '$mdDialog',
         'CoreApiService',
-        'BookSearchData'
+        'BookSearchData',
+        'BookData'
     ];
 
     function Controller($scope,
                         $state,
                         $mdDialog,
                         CoreApiService,
-                        BookSearchData) {
+                        BookSearchData,
+                        BookData) {
 
         var vm = this;
 
         vm.bookSearchData = BookSearchData;
+        vm.bookData = BookData;
 
         vm.priceSlider = {
             options: {
@@ -80,6 +83,7 @@
 
         function toggleBookSelection(book, event) {
             book.isSelected = !book.isSelected;
+            _updateSelection(book);
             event.stopPropagation();
         }
 
@@ -173,6 +177,26 @@
             }, function() {
 
             });
+        }
+
+        function _updateSelection(element) {
+            var index = _getIndex(element);
+            if(index === -1 && element.isSelected) {
+                vm.bookData.selectedBooks.push({book: element, selectedQuantity: 1});
+            } else {
+                vm.bookData.selectedBooks.splice(index, 1);
+            }
+        }
+
+        function _getIndex(element) {
+            var idx = -1;
+            for(var i = 0; i < vm.bookData.selectedBooks.length; i++) {
+                if(vm.bookData.selectedBooks[i].book.idBook === element.idBook) {
+                    idx = i;
+                    break;
+                }
+            }
+            return idx;
         }
     }
 

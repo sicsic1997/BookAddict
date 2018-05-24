@@ -18,10 +18,21 @@
 
         var vm = this;
 
+        vm.viewMyCart = viewMyCart;
+        vm.viewBookDashboard = viewBookDashboard;
+
         /////////
 
         function _initCtrl() {
             vm.userDetails = AuthenticationService.getUserDetails();
+        }
+
+        function viewMyCart() {
+            $state.go("viewMyCart");
+        }
+
+        function viewBookDashboard() {
+            $state.go('viewBookDashboard', {}, {reload: true});
         }
 
         _initCtrl();

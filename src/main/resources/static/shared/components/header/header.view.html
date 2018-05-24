@@ -4,7 +4,7 @@
         <h5 class="text mb-0 ml-2">{{headerController.userDetails.userName}}</h5>
     </div>
     <div class="col brand">
-        <img src="assets/images/logo.png"/>
+        <img ng-click="headerController.viewBookDashboard()" src="assets/images/logo.png"/>
         <h1 class="text">book<span>addict</span></h1>
     </div>
     <div class="col-2 dropdown header-menu">
@@ -12,8 +12,8 @@
             MENU
         </a>
         <div class="dropdown-menu">
-            <a class="dropdown-item py-2" href="#">MY CART</a>
-            <a class="dropdown-item py-2" href="#">BOOKINGS</a>
+            <div class="dropdown-item py-2" ng-click="headerController.viewMyCart()">MY CART</div>
+            <div class="dropdown-item py-2" href="#">BOOKINGS</div>
         </div>
     </div>
 
