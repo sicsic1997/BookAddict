@@ -24,6 +24,9 @@
             },
             getTextFilterEntries: function() {
                 return $http.get(baseUrl + 'bookDashboard/getAllEntriesForTextFilter');
+            },
+            makeNewBooking: function(data) {
+                return $http.post(baseUrl + 'bookings/saveBooking?userId=1&description="This is my first booking', data);
             }
         };
     }

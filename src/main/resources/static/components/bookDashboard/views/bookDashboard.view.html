@@ -97,8 +97,8 @@
                                         <h2 class="emphasize" title="{{book.writer.deWriter}}">{{book.writer.deWriter}}</h2>
                                     </div>
                                     <div class="more-icon">
-                                        <i class="material-icons" ng-hide="book.isSelected" ng-click="DashCtrl.toggleBookSelection(book)">check_circle</i>
-                                        <i class="material-icons" ng-show="book.isSelected" ng-click="DashCtrl.toggleBookSelection(book)">check_circle</i>
+                                        <i class="material-icons" ng-hide="book.isSelected" ng-click="DashCtrl.toggleBookSelection(book, $event)">check_circle</i>
+                                        <i class="material-icons" ng-show="book.isSelected" ng-click="DashCtrl.toggleBookSelection(book, $event)">check_circle</i>
                                     </div>
                                 </div>
                             </div>
